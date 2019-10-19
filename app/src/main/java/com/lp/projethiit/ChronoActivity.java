@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ChronoActivity extends AppCompatActivity {
 
     // CONSTANTE
@@ -17,12 +20,11 @@ public class ChronoActivity extends AppCompatActivity {
     private Button startButton;
     private Button pauseButton;
     private TextView timerValue;
-    int tempsTravail;
     TextView afficheTempsTravail;
-
     // DATA
     private long updatedTime;
     private CountDownTimer timer;
+    List<Categorie> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +38,11 @@ public class ChronoActivity extends AppCompatActivity {
 
         //Récupération temps de travail choisi
 
-        tempsTravail = getIntent().getIntExtra("temps_travail", 1);
+        categories = (List<Categorie>)getIntent().getSerializableExtra("categories");
          afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
         //afficheTempsTravail.setText("Le temps de travail choisi est : " + tempsTravail);
         afficheTempsTravail.setText("toto");
 
-
-        updatedTime = tempsTravail;
         miseAJour();
     }
 
@@ -102,7 +102,6 @@ public class ChronoActivity extends AppCompatActivity {
         }
 
         // Réinitialiser
-        updatedTime = tempsTravail;
 
         // Mise à jour graphique
         miseAJour();

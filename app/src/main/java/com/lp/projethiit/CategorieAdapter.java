@@ -24,6 +24,10 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
 
     }
 
+    public List<Categorie> getCategories() {
+        return categories;
+    }
+
     public CategorieAdapter(Activity context, List<Categorie> categories ) {
         super(context, R.layout.activity_template_seance, categories);
         this.context = context;
@@ -66,11 +70,7 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
 
         } else {
             view = convertView;
-            ((ViewHolder) view.getTag()).text.setTag(categories.get(position));
         }
-       // ViewHolder holder = (ViewHolder) view.getTag();
-       // holder.text.setText(list.get(position).getName());
-       // holder.checkbox.setChecked(list.get(position).isSelected());
         return view;
     }
 }

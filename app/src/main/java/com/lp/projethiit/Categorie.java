@@ -2,7 +2,9 @@ package com.lp.projethiit;
 
 import android.util.Log;
 
-public class Categorie {
+import java.io.Serializable;
+
+public class Categorie implements Serializable {
 
     private String title;
 
@@ -32,12 +34,12 @@ public class Categorie {
 
     public void increment() {
         this.value++;
-        Log.d("test", "valuue is "+ this.getValue());
+        Log.d("test", "valuue is " + this.getValue());
 
     }
 
     public void decrement() {
         this.value--;
-        Log.d("test", "valuue is "+ this.getValue());
+        Log.d("test", "valuue is " + this.getValue());
     }
 }
