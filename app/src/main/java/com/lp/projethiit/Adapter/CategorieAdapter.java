@@ -1,4 +1,4 @@
-package com.lp.projethiit;
+package com.lp.projethiit.Adapter;
 
 
 import android.app.Activity;
@@ -10,33 +10,37 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.lp.projethiit.Model.Categorie;
+import com.lp.projethiit.R;
+
 import java.util.List;
 
 public class CategorieAdapter extends ArrayAdapter<Categorie> {
     private final Activity context;
     private final List<Categorie> categories;
 
+    // on défini la classe ViewHolder avec les éléments qui feront une ligne
     static class ViewHolder {
         public TextView text;
         public Button btnLess;
         public Button btnAdd;
         public TextView result;
-
     }
 
-    public List<Categorie> getCategories() {
-        return categories;
-    }
-
+    // constructor
     public CategorieAdapter(Activity context, List<Categorie> categories ) {
+        // super = appeler la classe que j'étends - ligne 18
         super(context, R.layout.activity_template_seance, categories);
         this.context = context;
         this.categories = categories;
     }
 
+    // ecraser l'implémentation de la fonction getView() de arrayAdapter
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = null;
+        // Regarde si la view(une ligne) existe déjà
+        // convertView = view en cours de traitement(affichage dans lecran
         if (convertView == null) {
             LayoutInflater inflator = context.getLayoutInflater();
             view = inflator.inflate(R.layout.activity_template_seance, null);
@@ -50,8 +54,10 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
                 @Override
                 public void onClick(View view) {
                     Log.d("Marie", "on click Decrement");
+                    // recup modele = Categorie - categories
+                    // categories[position]
                     Categorie cat = categories.get(position);
-                    cat.decrement();
+                    cat.Decrement();
                     viewHolder.result.setText(Integer.toString(cat.getValue()));
                 }});
 
@@ -59,8 +65,8 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
                 @Override
                 public void onClick(View view) {
                     Log.d("Marie", "on click increment");
-                    Categorie cat = categories.get(position);
-                    cat.increment();
+                    Categorie cat =categories.get(position);
+                    cat.Increment();
                     viewHolder.result.setText(Integer.toString(cat.getValue()));
                 }});
 

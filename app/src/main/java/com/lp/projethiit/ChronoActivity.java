@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
+import com.lp.projethiit.Model.Categorie;
+
 import java.util.List;
 
 public class ChronoActivity extends AppCompatActivity {
