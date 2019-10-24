@@ -2,6 +2,8 @@ package com.lp.projethiit.Model;
 
 import android.util.Log;
 
+import com.lp.projethiit.Utils.TypeSeance;
+
 import java.io.Serializable;
 
 // ici on est d ns un modele
@@ -11,8 +13,16 @@ public class Categorie implements Serializable {
 
     private String _title;
     private int _value;
+    private TypeSeance _typeSeance;
 
 
+    public TypeSeance GetTypeSeance() {
+        return _typeSeance;
+    }
+
+    private void setTypeSeance(TypeSeance _typeSeance) {
+        this._typeSeance = _typeSeance;
+    }
 
     public String getTitle() {
         return _title;
@@ -31,9 +41,10 @@ public class Categorie implements Serializable {
     }
 
 
-    public Categorie(String title, int initialValue) {
+    public Categorie(String title, int initialValue, TypeSeance typeSeance) {
         this.setTitle(title);
         this.setValue(initialValue);
+        this.setTypeSeance(typeSeance);
     }
 
 

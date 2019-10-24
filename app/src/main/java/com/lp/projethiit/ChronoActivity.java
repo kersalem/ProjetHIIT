@@ -23,15 +23,17 @@ public class ChronoActivity extends AppCompatActivity {
     private TextView timerValue;
     TextView afficheTempsTravail;
     // DATA
+    int interateur;
     private long updatedTime;
     private CountDownTimer timer;
-    List<Categorie> categories;
+    List<Categorie> sequences;
+    private TextView nomActivite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chrono);
-
+        interateur = 0;
         // Récupérer les view
         timerValue = (TextView) findViewById(R.id.timerValue);
         startButton = (Button) findViewById(R.id.startButton);
@@ -39,10 +41,15 @@ public class ChronoActivity extends AppCompatActivity {
 
         //Récupération temps de travail choisi
 
-        categories = (List<Categorie>)getIntent().getSerializableExtra("categories");
+        sequences = (List<Categorie>)getIntent().getSerializableExtra("sequences");
          afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
-        //afficheTempsTravail.setText("Le temps de travail choisi est : " + tempsTravail);
-        afficheTempsTravail.setText("toto");
+        nomActivite = (TextView) findViewById(R.id.nomActivite);
+
+
+        updatedTime = sequences.get(interateur).getValue() * 1000;
+        nomActivite.setText("nom de l'activite : "+ sequences.get(interateur).getTitle());
+        afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(interateur).getValue());
+        //afficheTempsTravail.setText(sequences.get(0).getTitle());
 
         miseAJour();
     }
@@ -64,6 +71,11 @@ public class ChronoActivity extends AppCompatActivity {
 
             public void onFinish() {
                 updatedTime = 0;
+                interateur++;
+                updatedTime = sequences.get(interateur).getValue() * 1000;
+                nomActivite.setText("nom de l'activite : "+ sequences.get(interateur).getTitle());
+                afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(interateur).getValue());
+                timer.start();
                 miseAJour();
             }
         }.start();
