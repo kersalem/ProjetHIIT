@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,11 +13,11 @@ import android.widget.ListView;
 
 import com.lp.projethiit.Adapter.CategorieAdapter;
 import com.lp.projethiit.Model.Categorie;
+import com.lp.projethiit.Model.Seance;
 import com.lp.projethiit.Utils.TypeSeance;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
     private void goToChrono() {
         Intent pageChrono = new Intent(this, ChronoActivity.class);
        // Seance seance = new Seance(categories)
-        pageChrono.putExtra("sequences", (Serializable) categories);
+        Seance seance = new Seance();
+        seance.createSeanceAvecCategories(categories);
+        pageChrono.putExtra("seance", (Serializable) seance);
         startActivity(pageChrono);
     }
 
@@ -69,15 +70,16 @@ public class MainActivity extends AppCompatActivity {
         // je boucle sur ma source de donnée
         for (int i = 0; i < titleCategories.length; i++) {
             Categorie maCategorie;
+            int initialValue = 3;
             if (titleCategories[i] == "Sequence" || titleCategories[i] == "cycle")
                 {
                     // créer categorie nvelle
-                    maCategorie = new Categorie(titleCategories[i], 10, TypeSeance.Repetition);
+                    maCategorie = new Categorie(titleCategories[i], initialValue, TypeSeance.Repetition);
                 }
             else
                 {
                     // créer categorie nvelle
-                    maCategorie = new Categorie(titleCategories[i], 10, TypeSeance.Temps);
+                    maCategorie = new Categorie(titleCategories[i], initialValue, TypeSeance.Temps);
                 }
             // Ajouter categorie à la liste
             list.add(maCategorie);

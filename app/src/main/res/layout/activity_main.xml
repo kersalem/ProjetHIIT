@@ -24,8 +24,9 @@
     </ListView>
     <Button
         android:id="@+id/btnValider"
-        android:layout_width="75px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="valider"
         />
 
