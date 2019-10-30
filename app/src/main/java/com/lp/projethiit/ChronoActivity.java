@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lp.projethiit.Model.Categorie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChronoActivity extends AppCompatActivity {
@@ -23,17 +24,22 @@ public class ChronoActivity extends AppCompatActivity {
     private TextView timerValue;
     TextView afficheTempsTravail;
     // DATA
-    int interateur;
+    int position;
     private long updatedTime;
     private CountDownTimer timer;
     List<Categorie> sequences;
     private TextView nomActivite;
+    //propri de class
+    private List<Integer>seance;
+
+
+    List<Integer> myList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chrono);
-        interateur = 0;
+        position = 0;
         // Récupérer les view
         timerValue = (TextView) findViewById(R.id.timerValue);
         startButton = (Button) findViewById(R.id.startButton);
@@ -42,15 +48,24 @@ public class ChronoActivity extends AppCompatActivity {
         //Récupération temps de travail choisi
 
         sequences = (List<Categorie>)getIntent().getSerializableExtra("sequences");
-         afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
-        nomActivite = (TextView) findViewById(R.id.nomActivite);
+         //afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
+        //nomActivite = (TextView) findViewById(R.id.nomActivite);
+        seance = createSeance(sequences);
 
+        updatedTime = seance.get(position);
 
-        updatedTime = sequences.get(interateur).getValue() * 1000;
-        nomActivite.setText("nom de l'activite : "+ sequences.get(interateur).getTitle());
-        afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(interateur).getValue());
-        //afficheTempsTravail.setText(sequences.get(0).getTitle());
-
+        //nomActivite.setText("nom de l'activite : "+ sequences.get(position).getTitle());
+        //afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(position).getValue());
+        //System.out.println("item????????" + sequences.get(0).getTitle());
+/*
+        int item1 = sequences.get(0).getValue();
+        int item2 = sequences.get(1).getValue();
+        int item3 = sequences.get(2).getValue();
+        int item4 = sequences.get(3).getValue();
+        int item5 = sequences.get(4).getValue();
+        int item0 = sequences.get(5).getValue();
+        System.out.println("item????????" + item0 + " " + item1 + " " +  item2 + " " + item3 + " " + item4 + " " + item5);
+*/
         miseAJour();
     }
 
@@ -71,10 +86,10 @@ public class ChronoActivity extends AppCompatActivity {
 
             public void onFinish() {
                 updatedTime = 0;
-                interateur++;
-                updatedTime = sequences.get(interateur).getValue() * 1000;
-                nomActivite.setText("nom de l'activite : "+ sequences.get(interateur).getTitle());
-                afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(interateur).getValue());
+                position++;
+                updatedTime = sequences.get(position).getValue() * 1000;
+                nomActivite.setText("nom de l'activite : "+ sequences.get(position).getTitle());
+                afficheTempsTravail.setText("Le temps de travail choisi est : " + sequences.get(position).getValue());
                 timer.start();
                 miseAJour();
             }
@@ -116,8 +131,33 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Réinitialiser
 
+
         // Mise à jour graphique
         miseAJour();
 
+    }
+
+    private List<Integer> createSeance(List<Categorie> sequences) {
+        List<Integer> myList = new ArrayList<>();
+
+
+        int tempsEntrainement = sequences.get(5).getValue();
+        int tempsTravail = sequences.get(0).getValue();
+        int tempsReposCourt = sequences.get(1).getValue();
+        int tempsReposLong = sequences.get(2).getValue();
+        int sequence = sequences.get(3).getValue();
+        int cycle = sequences.get(4).getValue();
+
+        myList.add(tempsEntrainement * 1000);
+
+        for(int i = 0; i < sequence ; i++) {
+            for(int j =0; j<cycle;j++){
+                myList.add(tempsTravail * 1000);
+                myList.add(tempsReposCourt * 1000);
+            }
+            myList.add(tempsReposLong * 1000);
+        }
+
+        return myList;
     }
 }
