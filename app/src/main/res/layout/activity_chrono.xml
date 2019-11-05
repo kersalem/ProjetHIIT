@@ -4,13 +4,17 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_main"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".MainActivity">
+    android:background="@color/backgroundApp"
+    tools:context=".MainActivity">
 
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="top"
+
+        >
         <TextView
             android:id="@+id/nomActivite"
             android:layout_width="wrap_content"
@@ -28,47 +32,85 @@ tools:context=".MainActivity">
 
     </LinearLayout>
 
-    <TextView
-    android:id="@+id/timerValue"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/pauseButton"
-    android:layout_centerHorizontal="true"
-    android:layout_marginBottom="37dp"
-    android:textSize="40sp"
-    android:text="00:00:00" />
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="90dp"
-        android:layout_height="45dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="38dp"
-        android:text="Start"
-        android:onClick="onStart"
-        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        
+        android:radius="100dp"
+        >
 
-    <Button
-        android:id="@+id/pauseButton"
-        android:layout_width="90dp"
-        android:layout_height="45dp"
-        android:layout_alignBaseline="@id/startButton"
-        android:layout_alignBottom="@id/startButton"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="38dp"
-        android:text="Pause"
-        android:onClick="onPause"
-        />
+        <TextView
+            android:id="@+id/timerValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="37dp"
+            android:textSize="80sp"
+            android:gravity="center"
+            android:text="00:00:00" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/resetButton"
-        android:layout_width="90dp"
-        android:layout_height="45dp"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:text="Reset"
-        android:onClick="onReset"
-        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:radius="50dp"
+
+        >
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="38dp"
+            android:text="Start"
+            android:onClick="onStart"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/backgroundApp"
+            android:layout_centerInParent="true"
+
+
+            />
+
+        <Button
+            android:id="@+id/pauseButton"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_alignBaseline="@id/startButton"
+            android:layout_alignBottom="@id/startButton"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="38dp"
+            android:background="@color/colorPrimary"
+            android:onClick="onPause"
+
+            android:text="Pause"
+            android:textColor="@color/backgroundApp"
+
+            />
+
+        <Button
+                android:id="@+id/resetButton"
+                android:layout_width="90dp"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="50dp"
+                android:background="@color/backgroundApp"
+                android:onClick="onReset"
+                android:radius="50dp"
+                android:text="Reset"
+                android:textColor="@color/colorPrimary"
+         />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
