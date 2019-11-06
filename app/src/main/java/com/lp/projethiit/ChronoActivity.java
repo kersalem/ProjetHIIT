@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lp.projethiit.Bd.Categorie;
 import com.lp.projethiit.Model.Seance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChronoActivity extends AppCompatActivity {
@@ -32,7 +33,8 @@ public class ChronoActivity extends AppCompatActivity {
     private TextView nomActivite;
     //propri de class
     Seance seance;
-    private List<Categorie> sequencesDanslordre;
+    private ArrayList<Integer> sequencesDanslordre;
+    private ArrayList<String> sequenceTitre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +49,29 @@ public class ChronoActivity extends AppCompatActivity {
         //Récupération temps de travail choisi
 
         seance = (Seance)getIntent().getSerializableExtra("seance");
-         afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
+        afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
         nomActivite = (TextView) findViewById(R.id.nomActivite);
 
-        sequencesDanslordre = seance.getSeanceCategories();
-        updatedTime = sequencesDanslordre.get(position).getValueEnMiliseconds();
+        //sequencesDanslordre = seance.getSeanceCategories();
 
-        nomActivite.setText("nom de l'activite : "+ sequencesDanslordre.get(position).getTitle());
-        afficheTempsTravail.setText("Le temps de travail choisi est : " + sequencesDanslordre.get(position).getValue());
+        sequencesDanslordre = seance.createMaNouvelleSeance();
+        sequenceTitre = seance.seanceTitleCategorie();
+
+        updatedTime = sequencesDanslordre.get(position);
+
+
+
+        nomActivite.setText("nom de l'activite : "+ sequenceTitre.get(position));
+        afficheTempsTravail.setText("Le temps de travail choisi est : " + sequencesDanslordre.get(position));
         //System.out.println("item????????" + sequences.get(0).getTitle());
+
+        /*
+        System.out.println("eejuk;,yj,yi;k");
+        System.out.println(seance.getTempsEntrainement());
+        System.out.println(seance.getTempsReposCourt());
+        System.out.println(seance.getTempsReposLong());
+        System.out.println(seance.getTempsTravail());
+        */
 
         miseAJour();
     }
@@ -79,9 +95,9 @@ public class ChronoActivity extends AppCompatActivity {
                 updatedTime = 0;
                 if(position < sequencesDanslordre.size() -1) {
                     position++;
-                    updatedTime = sequencesDanslordre.get(position).getValueEnMiliseconds();
-                    afficheTempsTravail.setText("Le temps de travail choisi est : " + sequencesDanslordre.get(position).getValue());
-                    nomActivite.setText("activite : " + sequencesDanslordre.get(position).getTitle());
+                    updatedTime = sequencesDanslordre.get(position);
+                    afficheTempsTravail.setText("Le temps de toto choisi est : " + sequencesDanslordre.get(position));
+                    nomActivite.setText("activite toto : " + sequenceTitre.get(position));
 
                     miseAJour();
                     onStart();
@@ -127,7 +143,7 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Réinitialiser
         position = 0;
-        updatedTime = sequencesDanslordre.get(position).getValueEnMiliseconds();
+        updatedTime = sequencesDanslordre.get(position);
 
         // Mise à jour graphique
         miseAJour();

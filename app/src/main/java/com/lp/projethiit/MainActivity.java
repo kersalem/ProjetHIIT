@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         Seance seance = new Seance();
         seance.createSeanceAvecCategories(categories);
 
+
         // Sauvegarder en base
 
 

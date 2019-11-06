@@ -31,12 +31,12 @@ public class Seance implements Serializable {
     // Constructeur
     // On initialise les temps
     public Seance() {
-        setTempsEntrainement(10);
-        setTempsTravail(10);
-        setTempsReposCourt(10);
-        setTempsReposLong(10);
-        setSequence(5);
-        setCycle(4);
+        setTempsEntrainement(6);
+        setTempsTravail(2);
+        setTempsReposCourt(3);
+        setTempsReposLong(4);
+        setSequence(8);
+        setCycle(7);
     }
 
     public void createSeanceAvecCategories(List<Categorie> categories) {
@@ -47,24 +47,56 @@ public class Seance implements Serializable {
                this.tempsEntrainement = categorie.getValue();
            }
            if (categorie.getTitle().equals("Travail")) {
-               this.tempsEntrainement = categorie.getValue();
+               this.tempsTravail = categorie.getValue();
            }
            if (categorie.getTitle().equals("Repos")) {
-               this.tempsEntrainement = categorie.getValue();
+               this.tempsReposCourt = categorie.getValue();
            }
            if (categorie.getTitle().equals("Repos long")) {
-               this.tempsEntrainement = categorie.getValue();
+               this.tempsReposLong = categorie.getValue();
            }
            if (categorie.getTitle().equals("Sequence")) {
-               this.tempsEntrainement = categorie.getValue();
+               this.sequence = categorie.getValue();
            }
            if (categorie.getTitle().equals("Cycle")) {
-               this.tempsEntrainement = categorie.getValue();
+               this.cycle = categorie.getValue();
            }
        }
 
-
     }
+
+
+public ArrayList<Integer> createMaNouvelleSeance() {
+ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
+
+    maNouvelleSeance.add(getValueEnMiliseconds(this.tempsEntrainement));
+        for(int i = 0; i < this.sequence ; i++) {
+            for(int j =0; j<this.cycle;j++){
+                maNouvelleSeance.add(getValueEnMiliseconds(this.tempsTravail));
+                maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposCourt));
+            }
+            maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposLong));
+        }
+
+        return maNouvelleSeance;
+    }
+
+    public ArrayList<String> seanceTitleCategorie() {
+        ArrayList<String> maNouvelleSeance = new ArrayList<String>();
+
+        maNouvelleSeance.add("Préparation");
+        for(int i = 0; i < this.sequence ; i++) {
+            for(int j =0; j<this.cycle;j++){
+                maNouvelleSeance.add("Travail");
+                maNouvelleSeance.add("Repos");
+            }
+            maNouvelleSeance.add("Repos long");
+        }
+
+        return maNouvelleSeance;
+    }
+
+
 
     public List<Categorie> getSeanceCategories(){
 
@@ -134,5 +166,9 @@ public class Seance implements Serializable {
 
     public void setCycle(int cycle) {
         this.cycle = cycle;
+    }
+
+    public int getValueEnMiliseconds(int entier) {
+        return entier*1000;
     }
 }

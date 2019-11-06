@@ -39,9 +39,6 @@ public class Categorie implements Serializable {
         return _value;
     }
 
-    public int getValueEnMiliseconds() {
-        return _value*1000;
-    }
 
     private void setValue(int value) {
         if (value >= 0){
