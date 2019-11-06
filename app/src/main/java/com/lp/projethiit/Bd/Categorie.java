@@ -1,27 +1,31 @@
-package com.lp.projethiit.Model;
+package com.lp.projethiit.Bd;
 
 import android.util.Log;
 
-import com.lp.projethiit.Utils.TypeSeance;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
 // ici on est d ns un modele
 
 // la donnée qui va remplir la ligne
+@Entity(tableName = "categorie")
 public class Categorie implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String _title;
     private int _value;
-    private TypeSeance _typeSeance;
 
+    public Categorie() {
 
-    public TypeSeance GetTypeSeance() {
-        return _typeSeance;
     }
 
-    private void setTypeSeance(TypeSeance _typeSeance) {
-        this._typeSeance = _typeSeance;
+    public Categorie(String title, int initialValue) {
+        this.setTitle(title);
+        this.setValue(initialValue);
     }
 
     public String getTitle() {
@@ -45,15 +49,6 @@ public class Categorie implements Serializable {
         }
     }
 
-
-    public Categorie(String title, int initialValue, TypeSeance typeSeance) {
-        this.setTitle(title);
-        this.setValue(initialValue);
-        this.setTypeSeance(typeSeance);
-    }
-
-
-
     public void Increment() {
         this.setValue(this._value + 1);
         Log.d("test", "value is " + this.getValue());
@@ -62,7 +57,22 @@ public class Categorie implements Serializable {
 
     public void Decrement() {
         this.setValue(this._value - 1);
-
         Log.d("test", "value is " + this.getValue());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void set_title(String _title) {
+        this._title = _title;
+    }
+
+    public void set_value(int _value) {
+        this._value = _value;
     }
 }

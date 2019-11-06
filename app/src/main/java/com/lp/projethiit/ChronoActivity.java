@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lp.projethiit.Model.Categorie;
+import com.lp.projethiit.Bd.Categorie;
 import com.lp.projethiit.Model.Seance;
 
 import java.util.List;
