@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,42 +7,66 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:id="@+id/mainLayout"
-    android:background="@color/backgroundApp">
+    android:background="@color/backgroundApp"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Personnalisez votre séance"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="50px"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@color/colorTitle"
+        />
+
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/timeList">
+        android:id="@+id/timeList"
+        android:layout_margin="20dp">
     </ListView>
-    <Button
-        android:id="@+id/btnValider"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+            <Button
+                android:id="@+id/btnValider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C'est parti!"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/backgroundApp"
+                android:padding="10dp"
+                android:layout_margin="5dp"
 
-        android:text="valider"
-        />
+                />
 
-    <Button
-        android:id="@+id/button_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Enregistrer"
-        />
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enregistrer"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/backgroundApp"
+                android:padding="10dp"
+                android:layout_margin="5dp"
 
-    <Button
-        android:id="@+id/btnSelectSeance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Choisir Séance"
-        />
+                />
 
+            <Button
+                android:id="@+id/btnSelectSeance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choisir Séance"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/backgroundApp"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                />
 
+    </LinearLayout>
 </LinearLayout>

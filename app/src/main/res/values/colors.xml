@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="backgroundApp">#00574B</color>
     <color name="colorText">#00574B</color>
-    <color name="colorBorderButton">#00574B</color>
+    <color name="backgroundOpacity">#00574B06</color>
     <color name="backgroundButton">#D81B60</color>
+    <color name="colorTitle">#1F2C26</color>
 </resources>
