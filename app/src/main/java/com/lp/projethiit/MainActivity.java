@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToChrono();
+                chronoActivity();
             }
         });
 
@@ -69,6 +69,18 @@ public class MainActivity extends AppCompatActivity {
                 saveSeance();
             }
         });
+
+        // Action bouton List seance
+
+        Button btnSelectSeance = findViewById(R.id.btnSelectSeance);
+
+        btnSelectSeance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listSeanceActivity();
+            }
+        });
+
     }
 
     private void saveSeance() {
@@ -108,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //On passe "seance" à l'activité Chrono
-    private void goToChrono() {
+    private void chronoActivity() {
 
         // Créer la seance
         // Seance seance = new Seance(categories)
@@ -123,6 +135,13 @@ public class MainActivity extends AppCompatActivity {
         Intent pageChrono = new Intent(this, ChronoActivity.class);
         pageChrono.putExtra("seance", (Serializable) seance);
         startActivity(pageChrono);
+    }
+
+    //Direction activité ListSeances
+    private void listSeanceActivity() {
+
+        Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
+        startActivity(pageListSeances);
     }
 
     // On créé une liste de catégorie
