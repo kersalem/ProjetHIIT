@@ -1,7 +1,8 @@
 package com.lp.projethiit;
 
-import android.os.CountDownTimer;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lp.projethiit.Bd.Categorie;
-import com.lp.projethiit.Model.Seance;
+import com.lp.projethiit.Bd.DatabaseClient;
+import com.lp.projethiit.Bd.Seance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class ChronoActivity extends AppCompatActivity {
 
     // CONSTANTE
     private final static long INITIAL_TIME = 5000;
+    private DatabaseClient mDb;
 
     // VIEW
     private Button startButton;
@@ -59,7 +62,8 @@ public class ChronoActivity extends AppCompatActivity {
 
         updatedTime = sequencesDanslordre.get(position);
 
-
+        // Récupération du DatabaseClient
+        mDb = DatabaseClient.getInstance(getApplicationContext());
 
         nomActivite.setText("nom de l'activite : "+ sequenceTitre.get(position));
         afficheTempsTravail.setText("Le temps de travail choisi est : " + sequencesDanslordre.get(position));
@@ -72,6 +76,7 @@ public class ChronoActivity extends AppCompatActivity {
         System.out.println(seance.getTempsReposLong());
         System.out.println(seance.getTempsTravail());
         */
+        getSeance();
 
         miseAJour();
     }
@@ -150,7 +155,32 @@ public class ChronoActivity extends AppCompatActivity {
 
     }
 
+/// a mettre dzns liste activités
+    private void getSeance() {
+        class GetSeance extends AsyncTask<Void,Void, List<Seance>>{
 
+            @Override
+            protected List<Seance> doInBackground(Void... voids) {
 
+                List<Seance> seanceList = mDb.getAppDatabase()
+                        .SeanceDao()
+                        .getAll();
+                return seanceList;
+            }
+
+            @Override
+            protected void onPostExecute(List<Seance> seances) {
+                super.onPostExecute(seances);
+                //update(seances);
+            }
+        }
+
+        GetSeance getSeance = new GetSeance();
+        getSeance.execute();
+    }
+
+    private void update(List<Seance> seances) {
+
+    }
 
 }

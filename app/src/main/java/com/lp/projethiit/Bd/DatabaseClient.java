@@ -51,7 +51,7 @@ public class DatabaseClient {
             super.onCreate(db);
 
             //
-            db.execSQL("INSERT INTO categorie (categorie, value) VALUES(\"tâche 1\", 2);");
+            //db.execSQL("INSERT INTO seance (seance, value) VALUES(\"tâche 1\", 2);");
 
         }
     };

@@ -1,9 +1,7 @@
-package com.lp.projethiit.Model;
+package com.lp.projethiit.Bd;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import com.lp.projethiit.Bd.Categorie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
