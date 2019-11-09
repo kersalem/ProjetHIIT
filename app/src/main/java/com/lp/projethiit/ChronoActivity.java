@@ -34,7 +34,6 @@ public class ChronoActivity extends AppCompatActivity {
     private CountDownTimer timer;
     List<Categorie> sequences;
     private TextView nomActivite;
-    //propri de class
     Seance seance;
     private ArrayList<Integer> sequencesDanslordre;
     private ArrayList<String> sequenceTitre;
@@ -65,17 +64,9 @@ public class ChronoActivity extends AppCompatActivity {
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
-        nomActivite.setText("nom de l'activite : "+ sequenceTitre.get(position));
-        afficheTempsTravail.setText("Le temps de travail choisi est : " + sequencesDanslordre.get(position));
-        //System.out.println("item????????" + sequences.get(0).getTitle());
+        nomActivite.setText(" "+ sequenceTitre.get(position));
+        afficheTempsTravail.setText(" " + sequencesDanslordre.get(position) / 1000 + " secondes");
 
-        /*
-        System.out.println("eejuk;,yj,yi;k");
-        System.out.println(seance.getTempsEntrainement());
-        System.out.println(seance.getTempsReposCourt());
-        System.out.println(seance.getTempsReposLong());
-        System.out.println(seance.getTempsTravail());
-        */
         getSeance();
 
         miseAJour();
@@ -101,8 +92,8 @@ public class ChronoActivity extends AppCompatActivity {
                 if(position < sequencesDanslordre.size() -1) {
                     position++;
                     updatedTime = sequencesDanslordre.get(position);
-                    afficheTempsTravail.setText("Le temps de toto choisi est : " + sequencesDanslordre.get(position));
-                    nomActivite.setText("activite toto : " + sequenceTitre.get(position));
+                    afficheTempsTravail.setText(" " + sequencesDanslordre.get(position));
+                    nomActivite.setText(" " + sequenceTitre.get(position));
 
                     miseAJour();
                     onStart();
