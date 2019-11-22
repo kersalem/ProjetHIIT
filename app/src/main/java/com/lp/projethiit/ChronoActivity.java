@@ -50,8 +50,8 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Récupération intention
         seance = (Seance)getIntent().getSerializableExtra("seance");
-        sequenceEnCours = seance.createMaNouvelleSeance();
-        sequenceTitre = seance.seanceTitleCategorie();
+        sequenceEnCours = seance.creerNouvelleSeance();
+        sequenceTitre = seance.ajouterTitreEtape();
 
         updatedTime = sequenceEnCours.get(position);
 

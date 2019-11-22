@@ -53,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Categorie> adapter = new CategorieAdapter(this, categories);
 
         timeList.setAdapter(adapter);
-        Button btnValider = findViewById(R.id.btnValider);
+        Button btnEnregistrer = findViewById(R.id.btnValider);
 
         //action bouton
-        btnValider.setOnClickListener(new View.OnClickListener() {
+        btnEnregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                chronoActivity();
+                actionBtnJouerSeance();
             }
         });
 
@@ -78,24 +78,21 @@ public class MainActivity extends AppCompatActivity {
         btnSelectSeance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listSeanceActivity();
+                actionBtnChoisirSeance();
             }
         });
 
     }
 
     private void saveSeance() {
-        /**
-         * Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
-         */
-        class SaveSeance extends AsyncTask<Void, Void, Seance> {
 
+        //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
+        class SaveSeance extends AsyncTask<Void, Void, Seance> {
 
             @Override
             protected Seance doInBackground(Void... voids) {
 
                 // adding to database
-
                 mDb.getAppDatabase()
                         .SeanceDao()
                         .insert(seance);
@@ -116,21 +113,17 @@ public class MainActivity extends AppCompatActivity {
 
         SaveSeance ss = new SaveSeance();
         ss.execute();
-
     }
 
 
     //On passe "seance" à l'activité Chrono
-    private void chronoActivity() {
+    private void actionBtnJouerSeance() {
 
         // Créer la seance
-        // Seance seance = new Seance(categories)
         Seance seance = new Seance();
-        seance.createSeanceAvecCategories(categories);
-
+        seance.creationSeance(categories);
 
         // Sauvegarder en base
-
 
         // Lancer le chrono
         Intent pageChrono = new Intent(this, ChronoActivity.class);
@@ -139,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Direction activité ListSeances
-    private void listSeanceActivity() {
+    private void actionBtnChoisirSeance() {
 
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
         pageListSeances.putExtra("seance", (Serializable) seance);
@@ -149,11 +142,10 @@ public class MainActivity extends AppCompatActivity {
     // On créé une liste de catégorie
     private List<Categorie> CreateCategoriesInLocalAndReturnIt(String[] titleCategories) {
 
-
         // Création d'une seance
         Seance seance = new Seance();
 
         // Retourne la liste des catégories associées à la séance
-        return seance.getSeanceCategories();
+        return seance.getSeance();
     }
 }

@@ -43,7 +43,7 @@ public class Seance implements Serializable {
         setCycle(7);
     }
 
-    public void createSeanceAvecCategories(List<Categorie> categories) {
+    public void creationSeance(List<Categorie> categories) {
 
 
        for (Categorie categorie : categories) {
@@ -70,7 +70,7 @@ public class Seance implements Serializable {
     }
 
 
-public ArrayList<Integer> createMaNouvelleSeance() {
+public ArrayList<Integer> creerNouvelleSeance() {
 ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
 
     maNouvelleSeance.add(getValueEnMiliseconds(this.tempsEntrainement));
@@ -85,7 +85,7 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
         return maNouvelleSeance;
     }
 
-    public ArrayList<String> seanceTitleCategorie() {
+    public ArrayList<String> ajouterTitreEtape() {
         ArrayList<String> maNouvelleSeance = new ArrayList<String>();
 
         maNouvelleSeance.add("Préparation");
@@ -102,11 +102,10 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
 
 
 
-    public List<Categorie> getSeanceCategories(){
+    public List<Categorie> getSeance(){
 
         List<Categorie> categories = new ArrayList<>();
 
-        //categories.add(new Categorie("Test", getTempsEntrainement()));
         categories.add(new Categorie("Préparation", getTempsEntrainement()));
         categories.add(new Categorie("Travail", getTempsTravail()));
         categories.add(new Categorie("Repos", getTempsReposCourt()));
