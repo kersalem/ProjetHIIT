@@ -8,66 +8,66 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lp.projethiit.Bd.Categorie;
 import com.lp.projethiit.Bd.Seance;
 
 import java.util.ArrayList;
-import java.util.List;
-
 public class ChronoActivity extends AppCompatActivity {
 
+/*
     // CONSTANTE
     private final static long INITIAL_TIME = 5000;
+*/
 
     // VIEW
     private Button startButton;
     private Button pauseButton;
     private TextView timerValue;
-    TextView afficheTempsTravail;
-    // DATA
-    int position;
-    private long updatedTime;
-    private CountDownTimer timer;
-    List<Categorie> sequences;
+    private TextView afficheTempsTravail;
     private TextView nomActivite;
-    Seance seance;
-    private ArrayList<Integer> sequencesDanslordre;
+    private Seance seance;
+
+    //DATA
+    private CountDownTimer timer;
+    private ArrayList<Integer> sequenceEnCours;
     private ArrayList<String> sequenceTitre;
+    private long updatedTime;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chrono);
+
+        seance = new Seance();
         position = 0;
+
         // Récupérer les view
         timerValue = (TextView) findViewById(R.id.timerValue);
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
-
-        //Récupération temps de travail choisi
-
-        seance = (Seance)getIntent().getSerializableExtra("seance");
         afficheTempsTravail = (TextView) findViewById(R.id.afficheTempsTravail);
         nomActivite = (TextView) findViewById(R.id.nomActivite);
 
-        //sequencesDanslordre = seance.getSeanceCategories();
-
-        sequencesDanslordre = seance.createMaNouvelleSeance();
+        // Récupération intention
+        seance = (Seance)getIntent().getSerializableExtra("seance");
+        sequenceEnCours = seance.createMaNouvelleSeance();
         sequenceTitre = seance.seanceTitleCategorie();
 
-        updatedTime = sequencesDanslordre.get(position);
+        updatedTime = sequenceEnCours.get(position);
 
+        //Affichage Titre et Temps étape
         nomActivite.setText(sequenceTitre.get(position));
-        afficheTempsTravail.setText(sequencesDanslordre.get(position) / 1000 + " s");
+        afficheTempsTravail.setText(sequenceEnCours.get(position) / 1000 + " s");
 
         miseAJour();
-        onStart();
+        //onStart();
     }
 
     public void onStart(View view) {
+        startChrono();
+    }
 
-        //this.startTimer
-
+    public void startChrono() {
         timer = new CountDownTimer(updatedTime, 10) {
 
             public void onTick(long millisUntilFinished) {
@@ -78,23 +78,17 @@ public class ChronoActivity extends AppCompatActivity {
             public void onFinish() {
                 updatedTime = 0;
                 miseAJour();
-                if(position < sequencesDanslordre.size()-1) {
+                if(position < sequenceEnCours.size()-1) {
                     position++;
-                    updatedTime = sequencesDanslordre.get(position);
-                    afficheTempsTravail.setText(sequencesDanslordre.get(position)/ 1000 + " s");
+                    updatedTime = sequenceEnCours.get(position);
+                    afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
                     nomActivite.setText(sequenceTitre.get(position));
-
                     miseAJour();
-                    //onStart();
-
-                    //startTImer
-
                 }/*else{
                     Log.d("test", "finiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 }*/
             }
         }.start();
-
     }
 
     // Mettre en pause le compteur
@@ -120,7 +114,7 @@ public class ChronoActivity extends AppCompatActivity {
                 + String.format("%03d", milliseconds));
     }
 
-    // Remettre à le compteur à la valeur initiale
+    // Remettre compteur à la valeur initiale de l'étape en cours
     public void onReset(View view) {
 
         // Mettre en pause
@@ -130,14 +124,9 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Réinitialiser
         position = 0;
-        updatedTime = sequencesDanslordre.get(position);
+        updatedTime = sequenceEnCours.get(position);
 
         // Mise à jour graphique
         miseAJour();
     }
-
-    private void update(List<Seance> seances) {
-
-    }
-
 }
