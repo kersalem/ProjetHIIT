@@ -4,9 +4,7 @@ import android.util.Log;
 
 import java.io.Serializable;
 
-// ici on est d ns un modele
-
-// la donnée qui va remplir la ligne
+// la donnée
 
 public class Categorie implements Serializable {
 
@@ -14,24 +12,16 @@ public class Categorie implements Serializable {
 
     private String _title;
     private int _value;
-    private String _color;
 
+/*
     public Categorie() {
 
     }
+*/
 
-    public Categorie(String title, int initialValue, String colorBackground) {
+    public Categorie(String title, int initialValue) {
         this.setTitle(title);
         this.setValue(initialValue);
-        this.set_color(colorBackground);
-    }
-
-    public String get_color() {
-        return _color;
-    }
-
-    public void set_color(String _color) {
-        this._color = _color;
     }
 
     public String getTitle() {

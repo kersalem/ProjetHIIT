@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.lp.projethiit.Bd.Categorie;
+import com.lp.projethiit.Model.Categorie;
 import com.lp.projethiit.R;
 
 import java.util.List;

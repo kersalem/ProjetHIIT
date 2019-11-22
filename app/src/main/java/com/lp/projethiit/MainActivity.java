@@ -12,9 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lp.projethiit.Adapter.CategorieAdapter;
-import com.lp.projethiit.Bd.Categorie;
 import com.lp.projethiit.Bd.DatabaseClient;
 import com.lp.projethiit.Bd.Seance;
+import com.lp.projethiit.Model.Categorie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
