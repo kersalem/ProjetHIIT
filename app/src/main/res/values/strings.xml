@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ProjetHIIT</string>
     <string name="title_activity_chrono">ChronoActivity</string>
+    <string name="title_activity_list_adapter">ListAdapter</string>
 </resources>

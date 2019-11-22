@@ -14,14 +14,24 @@ public class Categorie implements Serializable {
 
     private String _title;
     private int _value;
+    private String _color;
 
     public Categorie() {
 
     }
 
-    public Categorie(String title, int initialValue) {
+    public Categorie(String title, int initialValue, String colorBackground) {
         this.setTitle(title);
         this.setValue(initialValue);
+        this.set_color(colorBackground);
+    }
+
+    public String get_color() {
+        return _color;
+    }
+
+    public void set_color(String _color) {
+        this._color = _color;
     }
 
     public String getTitle() {

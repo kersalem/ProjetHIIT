@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
     private void listSeanceActivity() {
 
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
+        pageListSeances.putExtra("seance", (Serializable) seance);
         startActivity(pageListSeances);
     }
 

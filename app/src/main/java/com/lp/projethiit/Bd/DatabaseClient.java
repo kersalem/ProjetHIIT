@@ -25,7 +25,7 @@ public class DatabaseClient {
         //appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").build();
 
         // Ajout de la méthode addCallback permettant de populate (remplir) la base de données à sa création
-        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").addCallback(roomDatabaseCallback).build();
+        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build();
     }
 
     // Méthode statique

@@ -1,5 +1,6 @@
 package com.lp.projethiit.Bd;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,6 +14,9 @@ public class Seance implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "description")
+    private String description;
 
     private int tempsEntrainement;
 
@@ -100,6 +104,7 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
 
         List<Categorie> categories = new ArrayList<>();
 
+        //categories.add(new Categorie("Test", getTempsEntrainement()));
         categories.add(new Categorie("Préparation", getTempsEntrainement()));
         categories.add(new Categorie("Travail", getTempsTravail()));
         categories.add(new Categorie("Repos", getTempsReposCourt()));
@@ -168,5 +173,13 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
 
     public int getValueEnMiliseconds(int entier) {
         return entier*1000;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
