@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,7 +71,7 @@ public class ListSeanceActivity extends AppCompatActivity {
             protected void onPostExecute(List<Seance> seances) {
                 super.onPostExecute(seances);
                 //update(seances);
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
 
                 // enregistrement dans la prochaine activity List
 

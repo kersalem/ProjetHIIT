@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     // DATA
     private DatabaseClient mDb;
     private Button saveView;
+    private Button btnSelectSeance;
 
     Seance seance = new Seance();
     private String[] tabCategories = {"Preparation", "Travail", "Repos court", "Repos long", "Sequence", "cycle"};
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Action bouton List seance
 
-        Button btnSelectSeance = findViewById(R.id.btnSelectSeance);
+        btnSelectSeance = findViewById(R.id.btnSelectSeance);
 
         btnSelectSeance.setOnClickListener(new View.OnClickListener() {
             @Override
