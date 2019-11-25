@@ -1,7 +1,10 @@
 package com.lp.projethiit;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,7 +18,7 @@ import java.util.List;
 public class ListSeanceActivity extends AppCompatActivity {
     private DatabaseClient mDb;
     Seance seance;
-    LinearLayout list;
+    private LinearLayout list;
 
     //private Button btnJouerSeance;
 
@@ -26,7 +29,7 @@ public class ListSeanceActivity extends AppCompatActivity {
 
         seance = (Seance) getIntent().getSerializableExtra("seance");
         //btnJouerSeance = findViewById(R.id.btnJouerSeance);
-
+        list = findViewById(R.id.lineList);
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -59,12 +62,12 @@ public class ListSeanceActivity extends AppCompatActivity {
             @Override
             protected List<Seance> doInBackground(Void... voids) {
 
-                List<Seance> seanceList = mDb.getAppDatabase()
+                List<Seance> list = mDb.getAppDatabase()
                         .SeanceDao()
                         .getAll();
 
 
-                return seanceList;
+                return list;
             }
 
             @Override
@@ -78,23 +81,29 @@ public class ListSeanceActivity extends AppCompatActivity {
                 for (Seance s : seances) {
                     LinearLayout linearLine = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_list_template, null);
 
-                    TextView seanceName = (TextView) linearLine.findViewById(R.id.seanceName);
-                    TextView seanceTemps = (TextView) linearLine.findViewById(R.id.seanceTemps);
+                    //TextView etapeName = (TextView) linearLine.findViewById(R.id.seanceName);
+                    //TextView seanceTemps = (TextView) linearLine.findViewById(R.id.seanceTemps);
 
-                    seanceName.setText("NB sequence : " + s.getSequence());
-                    seanceName.setText("NB cycle : " + s.getCycle());
-                    seanceName.setText("NB travail : " + s.getTempsTravail());
-                    seanceName.setText("NB repos : " + s.getTempsReposCourt());
+                    ((TextView) linearLine.findViewById(R.id.list_nb_sequence)).setText("Sequence : " + s.getSequence());
+                    ((TextView) linearLine.findViewById(R.id.list_nb_cycle)).setText("Cycle : " + s.getCycle());
+                    ((TextView) linearLine.findViewById(R.id.list_temps_travail)).setText("Travail : " + s.getTempsTravail());
+                    ((Button) linearLine.findViewById(R.id.btnJouerSeance)).setTag(s.getId());
 
-                   list = (LinearLayout) findViewById(R.id.lineList);
+                    ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Repos : " + s.getTempsReposCourt());
+
+
                    list.addView(linearLine);
-
                 }
+
             }
         }
 
         GetSeance getSeance = new GetSeance();
         getSeance.execute();
+    }
+
+    public void jouerSeance(View view){
+        Intent intent = new Intent(this, ChronoActivity.class);
     }
 
 }

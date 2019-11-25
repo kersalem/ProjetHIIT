@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.content.res.Configuration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     Seance seance = new Seance();
     private String[] tabCategories = {"Preparation", "Travail", "Repos court", "Repos long", "Sequence", "cycle"};
 
+    //Son
+/*    private SoundPool soundPool;
+    private AudioManager audioManager;*/
 
     private List<Categorie> categories = new ArrayList<>();
 
@@ -84,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        Toast.makeText(getApplicationContext(), "Portrait mode", Toast.LENGTH_SHORT).show();
+        } else if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(getApplicationContext(), "landscape mode", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
     private void saveSeance() {
 
         //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
@@ -123,15 +138,13 @@ public class MainActivity extends AppCompatActivity {
         Seance seance = new Seance();
         seance.creationSeance(categories);
 
-        // Sauvegarder en base
-
-        // Lancer le chrono
+        // Direction chrono activity
         Intent pageChrono = new Intent(this, ChronoActivity.class);
         pageChrono.putExtra("seance", (Serializable) seance);
         startActivity(pageChrono);
     }
 
-    //Direction activité ListSeances
+    //Direction ListSeances activity
     private void actionBtnChoisirSeance() {
 
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);

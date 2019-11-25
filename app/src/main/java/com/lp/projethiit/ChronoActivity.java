@@ -1,10 +1,12 @@
 package com.lp.projethiit;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -61,6 +63,17 @@ public class ChronoActivity extends AppCompatActivity {
 
         miseAJour();
         //onStart();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig){
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(getApplicationContext(), "Portrait mode", Toast.LENGTH_SHORT).show();
+        } else if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(getApplicationContext(), "landscape mode", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     public void onStart(View view) {
