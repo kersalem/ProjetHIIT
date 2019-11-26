@@ -98,7 +98,10 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
         for(int i = 0; i < this.sequence ; i++) {
             for(int j =0; j<this.cycle;j++){
                 maNouvelleSeance.add(getValueEnMiliseconds(this.tempsTravail));
-                maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposCourt));
+
+                if(j != this.cycle-1){
+                    maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposCourt));
+                }
             }
             maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposLong));
         }
@@ -113,7 +116,10 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
         for(int i = 0; i < this.sequence ; i++) {
             for(int j =0; j<this.cycle;j++){
                 maNouvelleSeance.add("Travail");
-                maNouvelleSeance.add("Repos");
+
+                if(j != this.cycle-1){
+                    maNouvelleSeance.add("Repos");
+                }
             }
             maNouvelleSeance.add("Repos long");
         }

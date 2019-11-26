@@ -101,6 +101,7 @@ public class ChronoActivity extends AppCompatActivity {
                     afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
                     nomActivite.setText(sequenceTitre.get(position));
                     miseAJour();
+                    startChrono();
                 }/*else{
                     Log.d("test", "finiiiiiiiiiiiiiiiiiiiiiiiiiii");
                 }*/
