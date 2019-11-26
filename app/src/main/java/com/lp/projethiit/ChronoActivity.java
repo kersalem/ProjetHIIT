@@ -1,10 +1,12 @@
 package com.lp.projethiit;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class ChronoActivity extends AppCompatActivity {
     private TextView afficheTempsTravail;
     private TextView nomActivite;
     private Seance seance;
+    private LinearLayout linearGlobal;
 
     //DATA
     private CountDownTimer timer;
@@ -44,6 +47,7 @@ public class ChronoActivity extends AppCompatActivity {
         position = 0;
 
         // Récupérer les view
+         linearGlobal = (LinearLayout) findViewById(R.id.activity_chrono);
         timerValue = (TextView) findViewById(R.id.timerValue);
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
@@ -125,7 +129,33 @@ public class ChronoActivity extends AppCompatActivity {
         timerValue.setText("" + mins + ":"
                 + String.format("%02d", secs) + ":"
                 + String.format("%03d", milliseconds));
+
+        setColorBackground();
     }
+
+    public void setColorBackground(){
+        switch(sequenceTitre.get(position)) {
+            case "Préparation":
+                linearGlobal.setBackgroundColor(Color.parseColor("#9966FF"));
+                break;
+
+            case "Travail":
+                linearGlobal.setBackgroundColor(Color.parseColor("#6666FF"));
+                break;
+
+            case "Repos" :
+                linearGlobal.setBackgroundColor(Color.parseColor("#6699FF"));
+                break;
+            case "Repos long" :
+                linearGlobal.setBackgroundColor(Color.parseColor("#66FF99"));
+                break;
+            default:
+        }
+    }
+
+
+
+
 
     // Remettre compteur à la valeur initiale de l'étape en cours
     public void onReset(View view) {

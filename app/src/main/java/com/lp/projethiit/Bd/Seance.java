@@ -32,6 +32,20 @@ public class Seance implements Serializable {
 
     private int cycle;
 
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Seance(String color) {
+        this.color = color;
+    }
+
     // Constructeur
     // On initialise les temps
     public Seance() {
@@ -49,21 +63,28 @@ public class Seance implements Serializable {
        for (Categorie categorie : categories) {
            if (categorie.getTitle().equals("Préparation")) {
                this.tempsEntrainement = categorie.getValue();
+               this.setColor("#FF6347");
+
            }
            if (categorie.getTitle().equals("Travail")) {
                this.tempsTravail = categorie.getValue();
+               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Repos")) {
                this.tempsReposCourt = categorie.getValue();
+               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Repos long")) {
                this.tempsReposLong = categorie.getValue();
+               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Sequence")) {
                this.sequence = categorie.getValue();
+               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Cycle")) {
                this.cycle = categorie.getValue();
+               this.setColor("#FF6347");
            }
        }
 
