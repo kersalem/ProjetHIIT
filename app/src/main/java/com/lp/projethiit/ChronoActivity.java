@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -102,9 +103,12 @@ public class ChronoActivity extends AppCompatActivity {
                     nomActivite.setText(sequenceTitre.get(position));
                     miseAJour();
                     startChrono();
-                }/*else{
+                }else{
                     Log.d("test", "finiiiiiiiiiiiiiiiiiiiiiiiiiii");
-                }*/
+                    nomActivite.setText("Bravo");
+                    afficheTempsTravail.setText("seance terminée");
+                    linearGlobal.setBackgroundColor(Color.parseColor("#00574B"));
+                }
             }
         }.start();
     }

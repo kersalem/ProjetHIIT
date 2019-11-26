@@ -53,8 +53,8 @@ public class Seance implements Serializable {
         setTempsTravail(2);
         setTempsReposCourt(3);
         setTempsReposLong(4);
-        setSequence(8);
-        setCycle(7);
+        setSequence(2);
+        setCycle(2);
     }
 
     public void creationSeance(List<Categorie> categories) {
