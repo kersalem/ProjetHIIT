@@ -25,11 +25,11 @@ public class ListSeanceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_template);
+        setContentView(R.layout.activity_list_seance);
 
         seance = (Seance) getIntent().getSerializableExtra("seance");
         //btnJouerSeance = findViewById(R.id.btnJouerSeance);
-        list = findViewById(R.id.lineList);
+        list = findViewById(R.id.list);
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
