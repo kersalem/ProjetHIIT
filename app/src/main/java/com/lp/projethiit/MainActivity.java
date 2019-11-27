@@ -16,6 +16,7 @@ import com.lp.projethiit.Adapter.CategorieAdapter;
 import com.lp.projethiit.Bd.DatabaseClient;
 import com.lp.projethiit.Bd.Seance;
 import com.lp.projethiit.Model.Categorie;
+import com.lp.projethiit.Model.DefaultCategories;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSelectSeance;
 
     Seance seance = new Seance();
-    private String[] tabCategories = {"Preparation", "Travail", "Repos court", "Repos long", "Sequence", "cycle"};
 
     //Son
 /*    private SoundPool soundPool;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
          saveView = findViewById(R.id.button_save);
 
-        categories = CreateCategoriesInLocalAndReturnIt(tabCategories);
+        categories = new DefaultCategories().getCategories();
 
         ArrayAdapter<Categorie> adapter = new CategorieAdapter(this, categories);
 
@@ -153,12 +153,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // On créé une liste de catégorie
-    private List<Categorie> CreateCategoriesInLocalAndReturnIt(String[] titleCategories) {
-
-        // Création d'une seance
-        Seance seance = new Seance();
-
-        // Retourne la liste des catégories associées à la séance
-        return seance.getSeance();
-    }
 }

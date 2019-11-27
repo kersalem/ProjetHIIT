@@ -4,7 +4,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lp.projethiit.Bd.Seance;
+import com.lp.projethiit.Model.Categorie;
 
 import java.util.ArrayList;
 public class ChronoActivity extends AppCompatActivity {
@@ -31,11 +31,13 @@ public class ChronoActivity extends AppCompatActivity {
     private TextView nomActivite;
     private Seance seance;
     private LinearLayout linearGlobal;
+    private Categorie categorie;
 
     //DATA
     private CountDownTimer timer;
     private ArrayList<Integer> sequenceEnCours;
     private ArrayList<String> sequenceTitre;
+    private ArrayList<Categorie> seanceEnCours;
     private long updatedTime;
     int position;
 
@@ -48,7 +50,7 @@ public class ChronoActivity extends AppCompatActivity {
         position = 0;
 
         // Récupérer les view
-         linearGlobal = (LinearLayout) findViewById(R.id.activity_chrono);
+        linearGlobal = (LinearLayout) findViewById(R.id.activity_chrono);
         timerValue = (TextView) findViewById(R.id.timerValue);
         startButton = (Button) findViewById(R.id.startButton);
         pauseButton = (Button) findViewById(R.id.pauseButton);
@@ -57,17 +59,19 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Récupération intention
         seance = (Seance)getIntent().getSerializableExtra("seance");
-        sequenceEnCours = seance.creerNouvelleSeance();
-        sequenceTitre = seance.ajouterTitreEtape();
+  /*    sequenceEnCours = seance.creerNouvelleSeance();
+        sequenceTitre = seance.ajouterTitreEtape();*/
+        seanceEnCours = seance.createSeance();
 
-        updatedTime = sequenceEnCours.get(position);
+
+        categorie = seanceEnCours.get(position);
+        updatedTime = categorie.getValue();
 
         //Affichage Titre et Temps étape
-        nomActivite.setText(sequenceTitre.get(position));
-        afficheTempsTravail.setText(sequenceEnCours.get(position) / 1000 + " s");
+        nomActivite.setText(categorie.getTitle());
+        afficheTempsTravail.setText(updatedTime / 1000 + " s");
 
         miseAJour();
-        //onStart();
     }
 
     @Override
@@ -96,15 +100,19 @@ public class ChronoActivity extends AppCompatActivity {
             public void onFinish() {
                 updatedTime = 0;
                 miseAJour();
-                if(position < sequenceEnCours.size()-1) {
+                if(position < seanceEnCours.size()-1) {
                     position++;
-                    updatedTime = sequenceEnCours.get(position);
-                    afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
-                    nomActivite.setText(sequenceTitre.get(position));
+                    categorie = seanceEnCours.get(position);
+                    updatedTime = categorie.getValue();
+                    //afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
+                    //nomActivite.setText(sequenceTitre.get(position));
+
+                    afficheTempsTravail.setText(categorie.getValue() + " s");
+                    nomActivite.setText(categorie.getTitle());
+
                     miseAJour();
                     startChrono();
                 }else{
-                    Log.d("test", "finiiiiiiiiiiiiiiiiiiiiiiiiiii");
                     nomActivite.setText("Bravo");
                     afficheTempsTravail.setText("seance terminée");
                     linearGlobal.setBackgroundColor(Color.parseColor("#00574B"));
@@ -139,7 +147,7 @@ public class ChronoActivity extends AppCompatActivity {
     }
 
     public void setColorBackground(){
-        switch(sequenceTitre.get(position)) {
+        switch(categorie.getTitle()) {
             case "Préparation":
                 linearGlobal.setBackgroundColor(Color.parseColor("#9966FF"));
                 break;
@@ -159,9 +167,6 @@ public class ChronoActivity extends AppCompatActivity {
     }
 
 
-
-
-
     // Remettre compteur à la valeur initiale de l'étape en cours
     public void onReset(View view) {
 
@@ -172,7 +177,7 @@ public class ChronoActivity extends AppCompatActivity {
 
         // Réinitialiser
         position = 0;
-        updatedTime = sequenceEnCours.get(position);
+        updatedTime = categorie.getValue();
 
         // Mise à jour graphique
         miseAJour();

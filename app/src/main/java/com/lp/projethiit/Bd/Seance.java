@@ -32,30 +32,10 @@ public class Seance implements Serializable {
 
     private int cycle;
 
-    private String color;
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Seance(String color) {
-        this.color = color;
-    }
-
-    // Constructeur
-    // On initialise les temps
-    public Seance() {
-        setTempsEntrainement(6);
-        setTempsTravail(2);
-        setTempsReposCourt(3);
-        setTempsReposLong(4);
-        setSequence(2);
-        setCycle(2);
-    }
+    private String colorEntrainement;
+    private String colorTravail;
+    private String colorReposCourt;
+    private String colorReposLong;
 
     public void creationSeance(List<Categorie> categories) {
 
@@ -63,85 +43,49 @@ public class Seance implements Serializable {
        for (Categorie categorie : categories) {
            if (categorie.getTitle().equals("Préparation")) {
                this.tempsEntrainement = categorie.getValue();
-               this.setColor("#FF6347");
-
            }
            if (categorie.getTitle().equals("Travail")) {
                this.tempsTravail = categorie.getValue();
-               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Repos")) {
                this.tempsReposCourt = categorie.getValue();
-               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Repos long")) {
                this.tempsReposLong = categorie.getValue();
-               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Sequence")) {
                this.sequence = categorie.getValue();
-               this.setColor("#FF6347");
            }
            if (categorie.getTitle().equals("Cycle")) {
                this.cycle = categorie.getValue();
-               this.setColor("#FF6347");
            }
        }
 
     }
 
 
-public ArrayList<Integer> creerNouvelleSeance() {
-ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
+    public ArrayList<Categorie> createSeance() {
+        ArrayList<Categorie> maNouvelleSeance = new ArrayList<>();
 
-    maNouvelleSeance.add(getValueEnMiliseconds(this.tempsEntrainement));
+        maNouvelleSeance.add(new Categorie("Préparation", getValueEnMiliseconds(this.tempsEntrainement)));
+
+
         for(int i = 0; i < this.sequence ; i++) {
             for(int j =0; j<this.cycle;j++){
-                maNouvelleSeance.add(getValueEnMiliseconds(this.tempsTravail));
+
+                maNouvelleSeance.add(new Categorie("Travail", getValueEnMiliseconds(this.tempsTravail)));
 
                 if(j != this.cycle-1){
-                    maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposCourt));
+                    maNouvelleSeance.add(new Categorie("Repos", getValueEnMiliseconds(this.tempsReposCourt)));
                 }
             }
-            maNouvelleSeance.add(getValueEnMiliseconds(this.tempsReposLong));
-        }
-
-        return maNouvelleSeance;
-    }
-
-    public ArrayList<String> ajouterTitreEtape() {
-        ArrayList<String> maNouvelleSeance = new ArrayList<String>();
-
-        maNouvelleSeance.add("Préparation");
-        for(int i = 0; i < this.sequence ; i++) {
-            for(int j =0; j<this.cycle;j++){
-                maNouvelleSeance.add("Travail");
-
-                if(j != this.cycle-1){
-                    maNouvelleSeance.add("Repos");
-                }
-            }
-            maNouvelleSeance.add("Repos long");
+            maNouvelleSeance.add(new Categorie("Repos long", getValueEnMiliseconds(this.tempsReposLong)));
         }
 
         return maNouvelleSeance;
     }
 
 
-
-    public List<Categorie> getSeance(){
-
-        List<Categorie> categories = new ArrayList<>();
-
-        categories.add(new Categorie("Préparation", getTempsEntrainement()));
-        categories.add(new Categorie("Travail", getTempsTravail()));
-        categories.add(new Categorie("Repos", getTempsReposCourt()));
-        categories.add(new Categorie("Repos long", getTempsReposLong()));
-        categories.add(new Categorie("Sequence", getSequence()));
-        categories.add(new Categorie("Cycle", getCycle()));
-
-        return categories;
-    }
 
     public int getId() {
         return id;
@@ -164,7 +108,7 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
     }
 
     public void setTempsTravail(int tempsTravail) {
-        this.tempsTravail = tempsTravail;
+        this.tempsTravail=tempsTravail;
     }
 
     public int getTempsReposCourt() {
@@ -172,7 +116,7 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
     }
 
     public void setTempsReposCourt(int tempsReposCourt) {
-        this.tempsReposCourt = tempsReposCourt;
+        this.tempsReposCourt= tempsReposCourt;
     }
 
     public int getTempsReposLong() {
@@ -180,7 +124,7 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
     }
 
     public void setTempsReposLong(int tempsReposLong) {
-        this.tempsReposLong = tempsReposLong;
+        this.tempsReposLong=tempsReposLong;
     }
 
     public int getSequence() {
@@ -209,5 +153,38 @@ ArrayList<Integer> maNouvelleSeance = new ArrayList<Integer>();
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public String getColorEntrainement() {
+        return colorEntrainement;
+    }
+
+    public void setColorEntrainement(String colorEntrainement) {
+        this.colorEntrainement = colorEntrainement;
+    }
+
+    public String getColorTravail() {
+        return colorTravail;
+    }
+
+    public void setColorTravail(String colorTravail) {
+        this.colorTravail = colorTravail;
+    }
+
+    public String getColorReposCourt() {
+        return colorReposCourt;
+    }
+
+    public void setColorReposCourt(String colorReposCourt) {
+        this.colorReposCourt = colorReposCourt;
+    }
+
+    public String getColorReposLong() {
+        return colorReposLong;
+    }
+
+    public void setColorReposLong(String colorReposLong) {
+        this.colorReposLong = colorReposLong;
     }
 }
