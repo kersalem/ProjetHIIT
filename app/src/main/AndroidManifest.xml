@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".ListSeanceActivity"
-            android:label="Choisir une séance"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            />
+            android:label="@string/app_name"/>
+
         <activity
             android:name=".ChronoActivity"
-            android:label="@string/title_activity_chrono"
+            android:label="@string/app_name"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".MainActivity"
+            android:label="@string/app_name"
             android:configChanges="orientation|screenSize|keyboardHidden"
             >
             <intent-filter>

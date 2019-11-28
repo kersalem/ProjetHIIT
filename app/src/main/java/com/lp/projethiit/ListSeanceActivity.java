@@ -29,6 +29,7 @@ public class ListSeanceActivity extends AppCompatActivity {
 
         list = findViewById(R.id.list);
 
+
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
@@ -87,9 +88,6 @@ public class ListSeanceActivity extends AppCompatActivity {
         getSeance.execute();
     }
 
-    public void jouerSeance(View view){
-        Intent intent = new Intent(this, ChronoActivity.class);
-    }
 
     //Direction activité Chrono
     private void selectionnerCetteSeance(Seance seance) {
