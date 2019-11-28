@@ -33,7 +33,8 @@ public class ChronoActivity extends AppCompatActivity {
     private Seance seance;
     private LinearLayout linearGlobal;
     private Categorie categorie;
-    private MediaPlayer siffletSon;
+    private MediaPlayer siffletFinEtape;
+    private MediaPlayer siffletFinSeance;
 
     //DATA
     private CountDownTimer timer;
@@ -72,7 +73,9 @@ public class ChronoActivity extends AppCompatActivity {
         nomActivite.setText(categorie.getTitle());
         afficheTempsTravail.setText(updatedTime / 1000 + " s");
 
-         siffletSon = MediaPlayer.create(this, R.raw.sifflet);
+        //Paramétrer sons
+         siffletFinEtape = MediaPlayer.create(this, R.raw.sifflet);
+         siffletFinSeance = MediaPlayer.create(this, R.raw.sifflet3);
 
         miseAJour();
     }
@@ -104,12 +107,10 @@ public class ChronoActivity extends AppCompatActivity {
                 updatedTime = 0;
                 miseAJour();
                 if(position < seanceEnCours.size()-1) {
+                    siffletFinEtape.start();
                     position++;
-                    siffletSon.start();
                     categorie = seanceEnCours.get(position);
                     updatedTime = categorie.getValue();
-                    //afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
-                    //nomActivite.setText(sequenceTitre.get(position));
 
                     afficheTempsTravail.setText(categorie.getValue() + " s");
                     nomActivite.setText(categorie.getTitle());
@@ -120,6 +121,7 @@ public class ChronoActivity extends AppCompatActivity {
                     nomActivite.setText("Bravo");
                     afficheTempsTravail.setText("seance terminée");
                     linearGlobal.setBackgroundColor(Color.parseColor("#00574B"));
+                    siffletFinSeance.start();
                 }
             }
         }.start();
