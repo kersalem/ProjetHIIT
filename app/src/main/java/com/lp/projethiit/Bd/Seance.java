@@ -20,6 +20,8 @@ public class Seance implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
+    private String name;
+
     private int tempsEntrainement;
 
     private int tempsTravail;
@@ -31,11 +33,6 @@ public class Seance implements Serializable {
     private int sequence;
 
     private int cycle;
-
-    private String colorEntrainement;
-    private String colorTravail;
-    private String colorReposCourt;
-    private String colorReposLong;
 
     public void creationSeance(List<Categorie> categories) {
 
@@ -155,36 +152,12 @@ public class Seance implements Serializable {
         this.description = description;
     }
 
-
-    public String getColorEntrainement() {
-        return colorEntrainement;
+    public String getName() {
+        return name;
     }
 
-    public void setColorEntrainement(String colorEntrainement) {
-        this.colorEntrainement = colorEntrainement;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getColorTravail() {
-        return colorTravail;
-    }
-
-    public void setColorTravail(String colorTravail) {
-        this.colorTravail = colorTravail;
-    }
-
-    public String getColorReposCourt() {
-        return colorReposCourt;
-    }
-
-    public void setColorReposCourt(String colorReposCourt) {
-        this.colorReposCourt = colorReposCourt;
-    }
-
-    public String getColorReposLong() {
-        return colorReposLong;
-    }
-
-    public void setColorReposLong(String colorReposLong) {
-        this.colorReposLong = colorReposLong;
-    }
 }

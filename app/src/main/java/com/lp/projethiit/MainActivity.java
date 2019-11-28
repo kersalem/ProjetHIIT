@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.content.res.Configuration;
@@ -28,12 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseClient mDb;
     private Button saveView;
     private Button btnSelectSeance;
-
+    private boolean update;
     Seance seance = new Seance();
+    private EditText editNameSeance;
 
-    //Son
-/*    private SoundPool soundPool;
-    private AudioManager audioManager;*/
 
     private List<Categorie> categories = new ArrayList<>();
 
@@ -45,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
+        editNameSeance = (EditText) findViewById(R.id.editNameSeance);
+        editNameSeance.getText().toString();
+
+
 
         // Récupérer ListView du main activity xml
         ListView timeList = findViewById(R.id.timeList);
 
-
+        update = getIntent().getBooleanExtra("update", false);
          saveView = findViewById(R.id.button_save);
 
         categories = new DefaultCategories().getCategories();
@@ -57,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Categorie> adapter = new CategorieAdapter(this, categories);
 
         timeList.setAdapter(adapter);
-        Button btnEnregistrer = findViewById(R.id.btnValider);
+        Button btnJouerSeance = findViewById(R.id.btnValider);
 
         //action bouton
-        btnEnregistrer.setOnClickListener(new View.OnClickListener() {
+        btnJouerSeance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 actionBtnJouerSeance();
@@ -76,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Action bouton List seance
-
         btnSelectSeance = findViewById(R.id.btnSelectSeance);
 
         btnSelectSeance.setOnClickListener(new View.OnClickListener() {
@@ -108,9 +110,16 @@ public class MainActivity extends AppCompatActivity {
             protected Seance doInBackground(Void... voids) {
 
                 // adding to database
-                mDb.getAppDatabase()
-                        .SeanceDao()
-                        .insert(seance);
+
+                if(update) {
+                    mDb.getAppDatabase()
+                            .SeanceDao()
+                            .update(seance);
+                } else {
+                    mDb.getAppDatabase()
+                            .SeanceDao()
+                            .insert(seance);
+                }
 
                 return seance;
             }
@@ -121,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
 
                 // Quand la tache est créée, on arrête l'activité AddTaskActivity (on l'enleve de la pile d'activités)
                 setResult(RESULT_OK);
-                //finish();
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
         }
 
         SaveSeance ss = new SaveSeance();
         ss.execute();
+
     }
 
 
@@ -135,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     private void actionBtnJouerSeance() {
 
         // Créer la seance
-        Seance seance = new Seance();
+        //Seance seance = new Seance();
         seance.creationSeance(categories);
 
         // Direction chrono activity
@@ -150,6 +159,4 @@ public class MainActivity extends AppCompatActivity {
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
         startActivity(pageListSeances);
     }
-
-    // On créé une liste de catégorie
 }
