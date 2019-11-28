@@ -35,8 +35,6 @@ public class ChronoActivity extends AppCompatActivity {
 
     //DATA
     private CountDownTimer timer;
-    private ArrayList<Integer> sequenceEnCours;
-    private ArrayList<String> sequenceTitre;
     private ArrayList<Categorie> seanceEnCours;
     private long updatedTime;
     int position;
@@ -63,8 +61,9 @@ public class ChronoActivity extends AppCompatActivity {
         sequenceTitre = seance.ajouterTitreEtape();*/
         seanceEnCours = seance.createSeance();
 
-
         categorie = seanceEnCours.get(position);
+
+
         updatedTime = categorie.getValue();
 
         //Affichage Titre et Temps étape

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ListSeanceActivity"
-            android:label="ListSeanceActivity"
+            android:label="Choisir une séance"
             android:configChanges="orientation|screenSize|keyboardHidden"
             />
         <activity
