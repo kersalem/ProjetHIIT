@@ -1,6 +1,7 @@
 package com.lp.projethiit;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.content.res.Configuration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    static final String STATE_SEANCE = "seance";
 
     // DATA
     private DatabaseClient mDb;
@@ -40,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState != null) {
+
+            seance = (Seance)savedInstanceState.getSerializable(STATE_SEANCE);
+
+        } else {
+
+            // On initialise resultat
+            seance = new Seance();
+        }
+
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -159,4 +172,13 @@ public class MainActivity extends AppCompatActivity {
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
         startActivity(pageListSeances);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState){
+
+        outState.putSerializable(STATE_SEANCE, (Serializable) seance);
+
+        super.onSaveInstanceState(outState);
+    }
 }
+
