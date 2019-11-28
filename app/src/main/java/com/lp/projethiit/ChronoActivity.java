@@ -2,6 +2,7 @@ package com.lp.projethiit;
 
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ChronoActivity extends AppCompatActivity {
     private Seance seance;
     private LinearLayout linearGlobal;
     private Categorie categorie;
+    private MediaPlayer siffletSon;
 
     //DATA
     private CountDownTimer timer;
@@ -70,6 +72,8 @@ public class ChronoActivity extends AppCompatActivity {
         nomActivite.setText(categorie.getTitle());
         afficheTempsTravail.setText(updatedTime / 1000 + " s");
 
+         siffletSon = MediaPlayer.create(this, R.raw.sifflet);
+
         miseAJour();
     }
 
@@ -101,6 +105,7 @@ public class ChronoActivity extends AppCompatActivity {
                 miseAJour();
                 if(position < seanceEnCours.size()-1) {
                     position++;
+                    siffletSon.start();
                     categorie = seanceEnCours.get(position);
                     updatedTime = categorie.getValue();
                     //afficheTempsTravail.setText(sequenceEnCours.get(position)/ 1000 + " s");
