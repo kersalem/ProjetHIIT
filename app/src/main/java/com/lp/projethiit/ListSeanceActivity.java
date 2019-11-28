@@ -27,7 +27,6 @@ public class ListSeanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_seance);
 
-        seance = (Seance) getIntent().getSerializableExtra("seance");
         list = findViewById(R.id.list);
 
         // Récupération du DatabaseClient
@@ -57,20 +56,15 @@ public class ListSeanceActivity extends AppCompatActivity {
             protected void onPostExecute(List<Seance> seances) {
                 super.onPostExecute(seances);
                 //update(seances);
-                //Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-
-                // enregistrement dans la prochaine activity List
 
                 for (Seance s : seances) {
+                    final Seance seanceToPass = s;
                     LinearLayout linearLine = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_list_template, null);
 
-                    //TextView etapeName = (TextView) linearLine.findViewById(R.id.seanceName);
-                    //TextView seanceTemps = (TextView) linearLine.findViewById(R.id.seanceTemps);
-
-                    ((TextView) linearLine.findViewById(R.id.list_nb_sequence)).setText("Sequence : " + s.getSequence());
-                    ((TextView) linearLine.findViewById(R.id.list_nb_cycle)).setText("Cycle : " + s.getCycle());
-                    ((TextView) linearLine.findViewById(R.id.list_temps_travail)).setText("Travail : " + s.getTempsTravail());
-                    ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Repos : " + s.getTempsReposCourt());
+                    ((TextView) linearLine.findViewById(R.id.list_nb_sequence)).setText("Entreprise : " + seanceToPass.getTempsEntrainement());
+                    ((TextView) linearLine.findViewById(R.id.list_nb_cycle)).setText("Cycle : " + seanceToPass.getCycle());
+                    ((TextView) linearLine.findViewById(R.id.list_temps_travail)).setText("Travail : " + seanceToPass.getTempsTravail());
+                    ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Repos : " + seanceToPass.getTempsReposCourt());
                     Button btnJouerSeance = (Button) linearLine.findViewById(R.id.btnJouerSeance);
 
 
@@ -78,7 +72,7 @@ public class ListSeanceActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Log.d("Marie", "on click btnJouerSeance");
-                            selectionnerCetteSeance();
+                            selectionnerCetteSeance(seanceToPass);
                         }
                     });
 
@@ -98,7 +92,7 @@ public class ListSeanceActivity extends AppCompatActivity {
     }
 
     //Direction activité Chrono
-    private void selectionnerCetteSeance() {
+    private void selectionnerCetteSeance(Seance seance) {
         Log.d("Marie", "selectionnerCetteSeance");
 
         Intent seanceChoisie = new Intent(this, ChronoActivity.class);
