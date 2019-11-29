@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         editNameSeance = (EditText) findViewById(R.id.editNameSeance);
-        editNameSeance.getText().toString();
-
 
 
         // Récupérer ListView du main activity xml
@@ -116,6 +114,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void saveSeance() {
 
+        seance.setName(editNameSeance.getText().toString());
+
+        seance.creationSeance(categories);
         //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
         class SaveSeance extends AsyncTask<Void, Void, Seance> {
 

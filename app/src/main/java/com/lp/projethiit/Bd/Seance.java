@@ -20,18 +20,25 @@ public class Seance implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
+    @ColumnInfo(name = "name")
     private String name;
 
+    @ColumnInfo(name = "temps_entrainement")
     private int tempsEntrainement;
 
+    @ColumnInfo(name = "temps_travail")
     private int tempsTravail;
 
+    @ColumnInfo(name = "temps_repos_court")
     private int tempsReposCourt;
 
+    @ColumnInfo(name = "temps_repos_long")
     private int tempsReposLong;
 
+    @ColumnInfo(name = "sequence")
     private int sequence;
 
+    @ColumnInfo(name = "cycle")
     private int cycle;
 
     public void creationSeance(List<Categorie> categories) {
@@ -143,7 +150,6 @@ public class Seance implements Serializable {
     public int getValueEnMiliseconds(int entier) {
         return entier*1000;
     }
-
     public String getDescription() {
         return description;
     }

@@ -25,7 +25,7 @@ public class DatabaseClient {
         //appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").build();
 
         // Ajout de la méthode addCallback permettant de populate (remplir) la base de données à sa création
-        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "MyToDos").addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build();
+        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "HIIT").addCallback(roomDatabaseCallback).fallbackToDestructiveMigration().build();
     }
 
     // Méthode statique
@@ -50,7 +50,6 @@ public class DatabaseClient {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            //
             //db.execSQL("INSERT INTO seance (seance, value) VALUES(\"tâche 1\", 2);");
 
         }
