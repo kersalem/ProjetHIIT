@@ -36,6 +36,7 @@ public class ListSeanceActivity extends AppCompatActivity {
 
         getSeance();
 
+
     }
 
 
@@ -59,6 +60,9 @@ public class ListSeanceActivity extends AppCompatActivity {
                 super.onPostExecute(seances);
                 //update(seances);
 
+                list.removeAllViews();
+
+
                 for (Seance s : seances) {
                     final Seance seanceToPass = s;
                     LinearLayout linearLine = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_list_template, null);
@@ -71,6 +75,7 @@ public class ListSeanceActivity extends AppCompatActivity {
                     ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Temps Repos : " + seanceToPass.getTempsReposCourt() + " scdes");
                     Button btnJouerSeance = (Button) linearLine.findViewById(R.id.btnJouerSeance);
                     Button btnSupprimerSeance = (Button) linearLine.findViewById(R.id.btnSupprimerSeance);
+                    Button btnEditerSeance = (Button) linearLine.findViewById(R.id.btnEditerSeance);
 
 
                     btnJouerSeance.setOnClickListener(new View.OnClickListener() {
@@ -89,10 +94,18 @@ public class ListSeanceActivity extends AppCompatActivity {
                         }
                     });
 
+                    btnEditerSeance.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            editerCetteSeance(seanceToPass);
+
+                        }
+                    });
 
 
                     list.addView(linearLine);
                 }
+
 
             }
         }
@@ -111,6 +124,14 @@ public class ListSeanceActivity extends AppCompatActivity {
         startActivity(seanceChoisie);
     }
 
+    /////// EDITER UNE SEANCE
+
+    private void editerCetteSeance(Seance seance) {
+
+        Intent editSeance = new Intent(this, EditActivity.class);
+        editSeance.putExtra("seance", (Serializable) seance);
+        startActivity(editSeance);
+    }
 
 
 //////////////////////////////
@@ -135,6 +156,7 @@ public class ListSeanceActivity extends AppCompatActivity {
 
                 setResult(RESULT_OK);
                 Toast.makeText(getApplicationContext(), "Suppr", Toast.LENGTH_LONG).show();
+
             }
         }
 
@@ -143,5 +165,7 @@ public class ListSeanceActivity extends AppCompatActivity {
         supprimerCetteSeance.execute();
 
     }
+
+
 
 }
