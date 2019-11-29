@@ -55,14 +55,52 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center|bottom"
+            android:layout_margin="5dp">
+
+        <Button
+            android:id="@+id/btnSupprimerSeance"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Suppr"
+            android:layout_gravity="center"
+            android:onClick="supprimerSeance"
+            android:background="@color/backgroundApp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary"
+
+            />
+
+        <Button
+            android:id="@+id/btnEditerSeance"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_gravity="center"
+            android:onClick="editerSeance"
+            android:background="@color/backgroundApp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary"
+
+            />
+
         <Button
             android:id="@+id/btnJouerSeance"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="Jouer Séance"
-            android:layout_gravity="center"
+            android:text="Go!"
+            android:layout_gravity="bottom"
             android:onClick="jouerSeance"
+            android:background="@color/backgroundApp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimary"
             />
+
+        </LinearLayout>
 
     </LinearLayout>
 

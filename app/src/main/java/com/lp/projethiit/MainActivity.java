@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void saveSeance() {
 
         seance.setName(editNameSeance.getText().toString());
