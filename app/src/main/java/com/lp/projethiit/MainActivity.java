@@ -1,7 +1,6 @@
 package com.lp.projethiit;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button saveView;
     private Button btnSelectSeance;
     private boolean update;
-    Seance seance = new Seance();
+    private Seance seance = new Seance();
     private EditText editNameSeance;
 
 
@@ -43,15 +42,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(savedInstanceState != null) {
+     if(savedInstanceState != null) {
 
             seance = (Seance)savedInstanceState.getSerializable(STATE_SEANCE);
-
+            categories = seance.getCategories();
         } else {
 
             // On initialise resultat
             seance = new Seance();
-        }
+            categories = new DefaultCategories().getCategories();
+
+         }
 
 
         // Récupération du DatabaseClient
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         update = getIntent().getBooleanExtra("update", false);
          saveView = findViewById(R.id.button_save);
 
-        categories = new DefaultCategories().getCategories();
 
         ArrayAdapter<Categorie> adapter = new CategorieAdapter(this, categories);
 
@@ -102,21 +102,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig){
-        super.onConfigurationChanged(newConfig);
-        if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-        Toast.makeText(getApplicationContext(), "Portrait mode", Toast.LENGTH_SHORT).show();
-        } else if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(getApplicationContext(), "landscape mode", Toast.LENGTH_SHORT).show();
-
-        }
+    protected void onSaveInstanceState(Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        // Save our own state now
+        seance.setCategories(categories);
+        outState.putSerializable(STATE_SEANCE, seance );
     }
+
+
 
     private void saveSeance() {
 
         seance.setName(editNameSeance.getText().toString());
 
-        seance.creationSeance(categories);
+        seance.setCategories(categories);
         //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
         class SaveSeance extends AsyncTask<Void, Void, Seance> {
 
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Créer la seance
         //Seance seance = new Seance();
-        seance.creationSeance(categories);
+        seance.setCategories(categories);
 
         // Direction chrono activity
         Intent pageChrono = new Intent(this, ChronoActivity.class);
@@ -174,12 +174,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(pageListSeances);
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState){
 
-        outState.putSerializable(STATE_SEANCE, (Serializable) seance);
-
-        super.onSaveInstanceState(outState);
-    }
 }
 

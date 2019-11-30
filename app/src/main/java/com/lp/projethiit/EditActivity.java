@@ -83,7 +83,7 @@ public class EditActivity extends AppCompatActivity {
 
         seance.setName(editNameSeance.getText().toString());
 
-        seance.creationSeance(categories);
+        seance.setCategories(categories);
         //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
         class SaveSeance extends AsyncTask<Void, Void, Seance> {
 

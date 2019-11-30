@@ -41,7 +41,7 @@ public class Seance implements Serializable {
     @ColumnInfo(name = "cycle")
     private int cycle;
 
-    public void creationSeance(List<Categorie> categories) {
+    public void setCategories(List<Categorie> categories) {
 
 
        for (Categorie categorie : categories) {
@@ -64,6 +64,27 @@ public class Seance implements Serializable {
                this.cycle = categorie.getValue();
            }
        }
+
+    }
+
+
+    public List<Categorie> getCategories() {
+
+        List<Categorie> categories = new ArrayList<>();
+        categories.add(new Categorie("Préparation", this.tempsEntrainement));
+
+        categories.add(new Categorie("Travail", this.tempsTravail));
+
+        categories.add(new Categorie("Repos", this.tempsReposCourt));
+
+        categories.add(new Categorie("Repos long", this.tempsReposLong));
+
+        categories.add(new Categorie("Sequence", this.sequence));
+
+        categories.add(new Categorie("Cycle", this.cycle));
+
+
+        return categories;
 
     }
 
