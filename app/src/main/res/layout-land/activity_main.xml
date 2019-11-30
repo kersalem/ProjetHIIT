@@ -7,6 +7,7 @@
     android:layout_gravity="center"
     android:id="@+id/mainLayout"
     android:background="#FF6699"
+    android:focusableInTouchMode="true"
     >
 
     <LinearLayout
@@ -33,7 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_gravity="center_horizontal"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        android:inputType="text"
+        />
 
     <ListView
         android:id="@+id/timeList"
