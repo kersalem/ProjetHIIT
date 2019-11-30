@@ -33,7 +33,7 @@ public class ChronoActivity extends AppCompatActivity {
     private Categorie categorie;
     private MediaPlayer siffletFinEtape;
     private MediaPlayer siffletFinSeance;
-
+    private boolean isRunning = false;
     //DATA
     private CountDownTimer timer;
     private ArrayList<Categorie> seanceEnCours;
@@ -84,6 +84,11 @@ public class ChronoActivity extends AppCompatActivity {
     }
 
     public void startChrono() {
+
+        if(timer != null && isRunning){
+            return;
+        }
+
         timer = new CountDownTimer(updatedTime, 10) {
 
             public void onTick(long millisUntilFinished) {
@@ -92,6 +97,7 @@ public class ChronoActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
+                isRunning = false;
                 updatedTime = 0;
                 miseAJour();
                 if(position < seanceEnCours.size()-1) {
@@ -113,11 +119,13 @@ public class ChronoActivity extends AppCompatActivity {
                 }
             }
         }.start();
+        isRunning= true;
     }
 
     // Mettre en pause le compteur
     public void onPause(View view) {
         if (timer != null) {
+            isRunning = false;
             timer.cancel(); // Arrete le CountDownTimer
         }
     }
