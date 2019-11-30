@@ -19,9 +19,13 @@ import java.io.Serializable;
 import java.util.List;
 
 public class ListSeanceActivity extends AppCompatActivity {
+
+    // VIEW
+    private LinearLayout list;
+
+    //DATA
     private DatabaseClient mDb;
     Seance seance;
-    private LinearLayout list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,7 @@ public class ListSeanceActivity extends AppCompatActivity {
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         getSeance();
-
-
     }
-
-
 
     /// a mettre dzns liste activités
     private void getSeance() {
@@ -106,7 +106,6 @@ public class ListSeanceActivity extends AppCompatActivity {
                     list.addView(linearLine);
                 }
 
-
             }
         }
 
@@ -125,7 +124,6 @@ public class ListSeanceActivity extends AppCompatActivity {
     }
 
     /////// EDITER UNE SEANCE
-
     private void editerCetteSeance(Seance seance) {
 
         Intent editSeance = new Intent(this, EditActivity.class);
@@ -133,8 +131,6 @@ public class ListSeanceActivity extends AppCompatActivity {
         startActivity(editSeance);
     }
 
-
-//////////////////////////////
     private void supprimerCetteSeance(final Seance seance) {
 
         class SupprimerSeance extends AsyncTask<Void, Void, Void>{

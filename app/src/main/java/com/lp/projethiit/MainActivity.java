@@ -26,15 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     static final String STATE_SEANCE = "seance";
 
-    // DATA
-    private DatabaseClient mDb;
-    private Button saveView;
-    private Button btnSelectSeance;
-    private boolean update;
-    private Seance seance = new Seance();
+    // VIEW
     private EditText editNameSeance;
 
-
+    // DATA
+    private DatabaseClient mDb;
+    private boolean update;
+    private Seance seance = new Seance();
     private List<Categorie> categories = new ArrayList<>();
 
     @Override
@@ -42,7 +40,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     if(savedInstanceState != null) {
+        Button saveView;
+        Button btnSelectSeance;
+
+
+        if(savedInstanceState != null) {
 
             seance = (Seance)savedInstanceState.getSerializable(STATE_SEANCE);
             categories = seance.getCategories();

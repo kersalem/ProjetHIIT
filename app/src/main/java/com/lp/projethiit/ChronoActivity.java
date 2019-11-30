@@ -23,27 +23,29 @@ public class ChronoActivity extends AppCompatActivity {
 */
 
     // VIEW
-    private Button startButton;
-    private Button pauseButton;
     private TextView timerValue;
     private TextView afficheTempsTravail;
     private TextView nomActivite;
-    private Seance seance;
     private LinearLayout linearGlobal;
-    private Categorie categorie;
-    private MediaPlayer siffletFinEtape;
-    private MediaPlayer siffletFinSeance;
-    private boolean isRunning = false;
+
     //DATA
+    private Categorie categorie;
+    private Seance seance;
     private CountDownTimer timer;
     private ArrayList<Categorie> seanceEnCours;
     private long updatedTime;
-    int position;
+    private int position;
+    private boolean isRunning = false;
+    private MediaPlayer siffletFinSeance;
+    private MediaPlayer siffletFinEtape;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chrono);
+
+        Button startButton;
+        Button pauseButton;
 
         seance = new Seance();
         position = 0;

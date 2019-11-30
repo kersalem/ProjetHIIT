@@ -23,12 +23,13 @@ import java.util.List;
 
 public class EditActivity extends AppCompatActivity {
 
+    // VIEW
+    private EditText editNameSeance;
+
     // DATA
     private DatabaseClient mDb;
-    private Button saveView;
-    private Button btnListSeance;
     Seance seance = new Seance();
-    private EditText editNameSeance;
+
 
 
     private List<Categorie> categories = new ArrayList<>();
@@ -38,7 +39,9 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-            seance = new Seance();
+        Button saveView;
+        seance = new Seance();
+        Button btnListSeance;
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
@@ -78,7 +81,7 @@ public class EditActivity extends AppCompatActivity {
     }
 
 
-//update
+    //update
     private void updateSeance() {
 
         seance.setName(editNameSeance.getText().toString());
