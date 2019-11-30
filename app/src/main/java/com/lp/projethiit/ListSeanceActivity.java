@@ -67,12 +67,13 @@ public class ListSeanceActivity extends AppCompatActivity {
                     final Seance seanceToPass = s;
                     LinearLayout linearLine = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_list_template, null);
 
-                    ((TextView) linearLine.findViewById(R.id.list_nom_seance)).setText("Nom seance : " + seanceToPass.getName());
-                    ((TextView) linearLine.findViewById(R.id.list_nb_sequence)).setText("Temps Entrainement : " + seanceToPass.getTempsEntrainement() + " scdes");
-                    ((TextView) linearLine.findViewById(R.id.list_nb_cycle)).setText("Nombre de sequence : " + seanceToPass.getSequence());
+                    ((TextView) linearLine.findViewById(R.id.list_nom_seance)).setText("Séance : " + seanceToPass.getName());
+                    ((TextView) linearLine.findViewById(R.id.list_nb_entrainement)).setText("Temps Entrainement : " + seanceToPass.getTempsEntrainement() + " scdes");
+                    ((TextView) linearLine.findViewById(R.id.list_nb_sequence)).setText("Nombre de sequence : " + seanceToPass.getSequence());
                     ((TextView) linearLine.findViewById(R.id.list_nb_cycle)).setText("Nombre de Cycle : " + seanceToPass.getCycle());
                     ((TextView) linearLine.findViewById(R.id.list_temps_travail)).setText("Temps Travail : " + seanceToPass.getTempsTravail() + " scdes");
                     ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Temps Repos : " + seanceToPass.getTempsReposCourt() + " scdes");
+
                     Button btnJouerSeance = (Button) linearLine.findViewById(R.id.btnJouerSeance);
                     Button btnSupprimerSeance = (Button) linearLine.findViewById(R.id.btnSupprimerSeance);
                     Button btnEditerSeance = (Button) linearLine.findViewById(R.id.btnEditerSeance);

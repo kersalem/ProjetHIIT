@@ -31,7 +31,6 @@
         android:id="@+id/editNameSeance"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_gravity="center_horizontal"
         android:textSize="15sp"
         android:inputType="text"/>
@@ -39,7 +38,7 @@
     <ListView
         android:id="@+id/timeList"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"></ListView>
 
     </LinearLayout>
