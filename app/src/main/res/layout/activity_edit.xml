@@ -20,41 +20,40 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="2"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="2"
+                >
 
-        >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Modifer cette séance"
+                    android:textSize="50px"
+                    android:gravity="center"
+                    android:layout_margin="40dp"
+                    android:textColor="@color/colorPrimary"
+                    />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modifer cette séance"
-            android:textSize="50px"
-            android:gravity="center"
-            android:layout_margin="40dp"
-            android:textColor="@color/colorPrimary"
-            />
+                <EditText
+                    android:id="@+id/editNameSeance"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15sp"/>
 
-        <EditText
-            android:id="@+id/editNameSeance"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:layout_gravity="center_horizontal"
-            android:textSize="15sp"/>
+                <ListView
+                    android:id="@+id/timeList"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="20dp"></ListView>
 
-        <ListView
-            android:id="@+id/timeList"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_margin="20dp"></ListView>
-
-    </LinearLayout>
+            </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
