@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ListSeanceActivity extends AppCompatActivity {
 
+    static final String STATE_SEANCE_EDIT = "seanceEdit";
+
     // VIEW
     private LinearLayout list;
 
@@ -128,7 +130,7 @@ public class ListSeanceActivity extends AppCompatActivity {
     private void editerCetteSeance(Seance seance) {
 
         Intent editSeance = new Intent(this, EditActivity.class);
-        editSeance.putExtra("seance", (Serializable) seance);
+        editSeance.putExtra(STATE_SEANCE_EDIT, (Serializable) seance);
         startActivity(editSeance);
     }
 

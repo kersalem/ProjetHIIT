@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     // DATA
     private DatabaseClient mDb;
-    private boolean update;
     private Seance seance = new Seance();
     private List<Categorie> categories = new ArrayList<>();
 
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         // Récupérer ListView du main activity xml
         ListView timeList = findViewById(R.id.timeList);
 
-        update = getIntent().getBooleanExtra("update", false);
          saveView = findViewById(R.id.button_save);
 
 
@@ -126,16 +124,9 @@ public class MainActivity extends AppCompatActivity {
             protected Seance doInBackground(Void... voids) {
 
                 // adding to database
-
-                if(update) {
-                    mDb.getAppDatabase()
-                            .SeanceDao()
-                            .update(seance);
-                } else {
                     mDb.getAppDatabase()
                             .SeanceDao()
                             .insert(seance);
-                }
 
                 return seance;
             }

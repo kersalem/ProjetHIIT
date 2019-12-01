@@ -31,7 +31,6 @@ public class EditActivity extends AppCompatActivity {
     Seance seance = new Seance();
 
 
-
     private List<Categorie> categories = new ArrayList<>();
 
     @Override
@@ -40,14 +39,15 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         Button saveView;
-        seance = new Seance();
+
+        // Je viens remplacer la nouvelle instance par la seance choisie
+        seance = (Seance)getIntent().getSerializableExtra("seanceEdit");
         Button btnListSeance;
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         editNameSeance = (EditText) findViewById(R.id.editNameSeance);
-
 
         // Récupérer ListView du main activity xml
         ListView timeList = findViewById(R.id.timeList);
@@ -87,14 +87,14 @@ public class EditActivity extends AppCompatActivity {
         seance.setName(editNameSeance.getText().toString());
 
         seance.setCategories(categories);
+
         //Création d'une classe asynchrone pour sauvegarder la tache donnée par l'utilisateur
         class SaveSeance extends AsyncTask<Void, Void, Seance> {
 
             @Override
             protected Seance doInBackground(Void... voids) {
 
-                // adding to database
-
+                // update to database
                     mDb.getAppDatabase()
                             .SeanceDao()
                             .update(seance);
