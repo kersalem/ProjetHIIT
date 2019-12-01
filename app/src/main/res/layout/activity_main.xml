@@ -33,6 +33,7 @@
         android:hint="Nom séance"
         android:layout_gravity="center_horizontal"
         android:textSize="15sp"
+        android:imeOptions="actionDone"
         android:inputType="text"/>
 
     <ListView
