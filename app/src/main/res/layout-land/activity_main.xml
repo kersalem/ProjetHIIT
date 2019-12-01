@@ -43,6 +43,7 @@
     <EditText
         android:id="@+id/editNameSeance"
         android:layout_width="300dp"
+        android:imeOptions="actionDone"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_gravity="start"

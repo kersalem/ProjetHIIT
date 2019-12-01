@@ -32,6 +32,8 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:layout_gravity="center_horizontal"
             android:textSize="15sp"/>
 
