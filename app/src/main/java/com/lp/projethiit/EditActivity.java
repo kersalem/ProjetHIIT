@@ -16,12 +16,13 @@ import com.lp.projethiit.Adapter.CategorieAdapter;
 import com.lp.projethiit.Bd.DatabaseClient;
 import com.lp.projethiit.Bd.Seance;
 import com.lp.projethiit.Model.Categorie;
-import com.lp.projethiit.Model.DefaultCategories;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EditActivity extends AppCompatActivity {
+
+    static final String STATE_SEANCE = "seanceEdit";
 
     // VIEW
     private EditText editNameSeance;
@@ -39,22 +40,22 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
         Button saveView;
-
-        // Je viens remplacer la nouvelle instance par la seance choisie
-        seance = (Seance)getIntent().getSerializableExtra("seanceEdit");
         Button btnListSeance;
+
+            // Je viens remplacer la nouvelle instance par la seance choisie
+            seance = (Seance)getIntent().getSerializableExtra("seanceEdit");
+            categories = seance.getCategories();
 
         // Récupération du DatabaseClient
         mDb = DatabaseClient.getInstance(getApplicationContext());
 
         editNameSeance = (EditText) findViewById(R.id.editNameSeance);
+        seance.setName(editNameSeance.getText().toString());
 
         // Récupérer ListView du main activity xml
         ListView timeList = findViewById(R.id.timeList);
 
         saveView = findViewById(R.id.button_save);
-
-        categories = new DefaultCategories().getCategories();
 
         ArrayAdapter<Categorie> adapter = new CategorieAdapter(this, categories);
 
@@ -78,6 +79,15 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // Make sure to call the super method so that the states of our views are saved
+        super.onSaveInstanceState(outState);
+        // Save our own state now
+        seance.setCategories(categories);
+        outState.putSerializable(STATE_SEANCE, seance );
     }
 
 
