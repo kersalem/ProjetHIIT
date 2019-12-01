@@ -9,6 +9,17 @@
     android:background="@color/backgroundApp"
     >
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:scrollbarStyle="insideInset"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,4 +86,6 @@
             />
 
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
