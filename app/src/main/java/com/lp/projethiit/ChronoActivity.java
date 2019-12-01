@@ -78,7 +78,7 @@ public class ChronoActivity extends AppCompatActivity {
          siffletFinEtape = MediaPlayer.create(this, R.raw.sifflet);
          siffletFinSeance = MediaPlayer.create(this, R.raw.sifflet3);
 
-        miseAJour();
+        update();
     }
 
 
@@ -96,13 +96,13 @@ public class ChronoActivity extends AppCompatActivity {
 
             public void onTick(long millisUntilFinished) {
                 updatedTime = millisUntilFinished;
-                miseAJour();
+                update();
             }
 
             public void onFinish() {
                 isRunning = false;
                 updatedTime = 0;
-                miseAJour();
+                update();
                 if(position < seanceEnCours.size()-1) {
                     siffletFinEtape.start();
                     position++;
@@ -113,7 +113,7 @@ public class ChronoActivity extends AppCompatActivity {
 
                     nomActivite.setText(categorie.getTitle());
 
-                    miseAJour();
+                    update();
                     startChrono();
                 }else{
                     nomActivite.setText("Bravo");
@@ -136,7 +136,7 @@ public class ChronoActivity extends AppCompatActivity {
 
 
     // Mise à jour graphique
-    private void miseAJour() {
+    private void update() {
 
         // Décompositions en secondes et minutes
         int secs = (int) (updatedTime / 1000);
@@ -186,6 +186,6 @@ public class ChronoActivity extends AppCompatActivity {
         updatedTime = categorie.getValue();
 
         // Mise à jour graphique
-        miseAJour();
+        update();
     }
 }

@@ -75,7 +75,7 @@ public class EditActivity extends AppCompatActivity {
         btnListSeance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                retourListeSeance();
+                listSeances();
             }
         });
 
@@ -127,7 +127,7 @@ public class EditActivity extends AppCompatActivity {
 
 
     //Direction ListSeances activity
-    private void retourListeSeance() {
+    private void listSeances() {
 
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
         startActivity(pageListSeances);

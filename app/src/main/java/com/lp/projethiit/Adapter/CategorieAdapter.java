@@ -2,7 +2,6 @@ package com.lp.projethiit.Adapter;
 
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,6 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
             viewHolder.btnLess.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("Marie", "on click Decrement");
                     // recup modele = Categorie - categories
                     // categories[position]
                     Categorie cat = categories.get(position);
@@ -64,7 +62,6 @@ public class CategorieAdapter extends ArrayAdapter<Categorie> {
             viewHolder.btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("Marie", "on click increment");
                     Categorie cat =categories.get(position);
                     cat.Increment();
                     viewHolder.result.setText(Integer.toString(cat.getValue()));

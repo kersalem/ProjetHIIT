@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         btnJouerSeance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionBtnJouerSeance();
+                playSeance();
             }
         });
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         btnSelectSeance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionBtnChoisirSeance();
+                chooseSeance();
             }
         });
 
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //On passe "seance" à l'activité Chrono
-    private void actionBtnJouerSeance() {
+    private void playSeance() {
 
         // Créer la seance
         //Seance seance = new Seance();
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Direction ListSeances activity
-    private void actionBtnChoisirSeance() {
+    private void chooseSeance() {
 
         Intent pageListSeances = new Intent(this, ListSeanceActivity.class);
         startActivity(pageListSeances);

@@ -3,7 +3,6 @@ package com.lp.projethiit;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -43,7 +42,6 @@ public class ListSeanceActivity extends AppCompatActivity {
         getSeance();
     }
 
-    /// a mettre dzns liste activités
     private void getSeance() {
         class GetSeance extends AsyncTask<Void, Void, List<Seance>> {
 
@@ -76,31 +74,30 @@ public class ListSeanceActivity extends AppCompatActivity {
                     ((TextView) linearLine.findViewById(R.id.list_temps_travail)).setText("Temps Travail : " + seanceToPass.getTempsTravail() + " scdes");
                     ((TextView) linearLine.findViewById(R.id.list_temps_repos)).setText("Temps Repos : " + seanceToPass.getTempsReposCourt() + " scdes");
 
-                    Button btnJouerSeance = (Button) linearLine.findViewById(R.id.btnJouerSeance);
-                    Button btnSupprimerSeance = (Button) linearLine.findViewById(R.id.btnSupprimerSeance);
-                    Button btnEditerSeance = (Button) linearLine.findViewById(R.id.btnEditerSeance);
+                    Button buttonPlaySeance = (Button) linearLine.findViewById(R.id.btnJouerSeance);
+                    Button buttonDeleteSeance = (Button) linearLine.findViewById(R.id.btnSupprimerSeance);
+                    Button buttonEditSeance = (Button) linearLine.findViewById(R.id.btnEditerSeance);
 
 
-                    btnJouerSeance.setOnClickListener(new View.OnClickListener() {
+                    buttonPlaySeance.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            selectionnerCetteSeance(seanceToPass);
+                            selectSeance(seanceToPass);
                         }
                     });
 
-                    btnSupprimerSeance.setOnClickListener(new View.OnClickListener() {
+                    buttonDeleteSeance.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("Marie", "on click btnJouerSeance");
-                            supprimerCetteSeance(seanceToPass);
+                            deleteSeanceInList(seanceToPass);
 
                         }
                     });
 
-                    btnEditerSeance.setOnClickListener(new View.OnClickListener() {
+                    buttonEditSeance.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            editerCetteSeance(seanceToPass);
+                            editSeance(seanceToPass);
 
                         }
                     });
@@ -118,25 +115,24 @@ public class ListSeanceActivity extends AppCompatActivity {
 
 
     //Direction activité Chrono
-    private void selectionnerCetteSeance(Seance seance) {
-        Log.d("Marie", "selectionnerCetteSeance");
+    private void selectSeance(Seance seance) {
 
-        Intent seanceChoisie = new Intent(this, ChronoActivity.class);
-        seanceChoisie.putExtra("seance", (Serializable) seance);
-        startActivity(seanceChoisie);
+        Intent chosenSeance = new Intent(this, ChronoActivity.class);
+        chosenSeance.putExtra("seance", (Serializable) seance);
+        startActivity(chosenSeance);
     }
 
     /////// EDITER UNE SEANCE
-    private void editerCetteSeance(Seance seance) {
+    private void editSeance(Seance seance) {
 
         Intent editSeance = new Intent(this, EditActivity.class);
         editSeance.putExtra(STATE_SEANCE_EDIT, (Serializable) seance);
         startActivity(editSeance);
     }
 
-    private void supprimerCetteSeance(final Seance seance) {
+    private void deleteSeanceInList(final Seance seance) {
 
-        class SupprimerSeance extends AsyncTask<Void, Void, Void>{
+        class DeleteSeance extends AsyncTask<Void, Void, Void>{
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -160,8 +156,8 @@ public class ListSeanceActivity extends AppCompatActivity {
         }
 
 
-        SupprimerSeance supprimerCetteSeance = new SupprimerSeance();
-        supprimerCetteSeance.execute();
+        DeleteSeance deleteThisSeance = new DeleteSeance();
+        deleteThisSeance.execute();
 
     }
 

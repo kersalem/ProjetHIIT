@@ -1,7 +1,5 @@
 package com.lp.projethiit.Model;
 
-import android.util.Log;
-
 import java.io.Serializable;
 
 // la donnée
@@ -12,12 +10,6 @@ public class Categorie implements Serializable {
 
     private String _title;
     private int _value;
-
-/*
-    public Categorie() {
-
-    }
-*/
 
     public Categorie(String title, int initialValue) {
         this.setTitle(title);
@@ -44,13 +36,10 @@ public class Categorie implements Serializable {
 
     public void Increment() {
         this.setValue(this._value + 1);
-        Log.d("test", "value is " + this.getValue());
-
     }
 
     public void Decrement() {
         this.setValue(this._value - 1);
-        Log.d("test", "value is " + this.getValue());
     }
 
     public int getId() {
