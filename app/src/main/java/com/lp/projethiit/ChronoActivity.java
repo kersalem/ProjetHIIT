@@ -72,6 +72,7 @@ public class ChronoActivity extends AppCompatActivity {
         //Affichage Titre et Temps étape
         nomActivite.setText(categorie.getTitle());
         afficheTempsTravail.setText(updatedTime / 1000 + " s");
+        //afficheTempsTravail.setText(seance.getValueEnMiliseconds((int) updatedTime) + " s");
 
         //Paramétrer sons
          siffletFinEtape = MediaPlayer.create(this, R.raw.sifflet);
@@ -108,7 +109,8 @@ public class ChronoActivity extends AppCompatActivity {
                     categorie = seanceEnCours.get(position);
                     updatedTime = categorie.getValue();
 
-                    afficheTempsTravail.setText(categorie.getValue() + " s");
+                    afficheTempsTravail.setText(categorie.getValue()/ 1000 + " s");
+
                     nomActivite.setText(categorie.getTitle());
 
                     miseAJour();
